@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\.mvn",
+    "\\.mvn\\wrapper",
+    "\\.settings",
+    "\\bin\\.settings",
+    "\\bin\\src\\test",
+    "\\bin\\src\\test\\java",
+    "\\bin\\src\\test\\java\\com",
+    "\\bin\\src\\test\\java\\com\\example",
+    "\\src"
+  ],
+  "SelectedNode": "\\Team9rmdb.sql",
+  "PreviewInSolutionExplorer": false
+}
