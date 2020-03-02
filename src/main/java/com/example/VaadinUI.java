@@ -6,7 +6,7 @@ import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
+import java.util.*;
 
 @SpringUI
 public class VaadinUI extends UI {
@@ -41,7 +41,7 @@ public class VaadinUI extends UI {
 
     protected void init(VaadinRequest request) {
 
-       //PROBLEM LINE updateGridET();
+       //updateGridET();
         updateGrid();
 
         categoryGrid.setColumns("categoryName","subCategoryName", "description");

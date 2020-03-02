@@ -10,15 +10,17 @@ import java.util.List;
 public class Employee_TransactionsService {
 
     @Autowired
-    private JdbcTemplate jdbcTemplateET;
+    private JdbcTemplate jdbcTemplate;    
 
     public List<Employee_Transaction> findAll() {
-        return jdbcTemplateET.query("SELECT EmployeeID, TransactionID FROM Employee_Transactions;",
+        return jdbcTemplate.query("SELECT EmployeeID, TransactionID FROM Employee_Transactions",
                 (rs, rowNum) -> new Employee_Transaction(rs.getString("EmployeeID"), rs.getString("TransactionID")));
+        
+
     }
 
     public void update(Employee_Transaction employee_Transaction) {
-        jdbcTemplateET.update("UPDATE Employee_Transaction SET EmployeeID=?, TransactionID=?",
+        jdbcTemplate.update("UPDATE Employee_Transactions SET EmployeeID=?, TransactionID=?",
                 employee_Transaction.getEmployeeID(), employee_Transaction.getTransactionID());
     }
 
