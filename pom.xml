@@ -64,8 +64,8 @@
         <version>1.8.0</version>  
         <configuration> 
           <schemaVersion>V2</schemaVersion>  
-          <resourceGroup>demo-1583066585347-rg</resourceGroup>  
-          <appName>demo-1583066585347</appName>  
+          <resourceGroup>team9app</resourceGroup>  
+          <appName>team9dataapp</appName>  
           <pricingTier>P1v2</pricingTier>  
           <region>westeurope</region>  
           <runtime> 
