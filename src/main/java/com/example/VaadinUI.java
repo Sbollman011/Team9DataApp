@@ -5,6 +5,7 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.*;
 
@@ -79,7 +80,7 @@ public class VaadinUI extends UI {
 
 
     //############EMPLOYEE TRANSACTION GRID CREATION#########################################
-       //updateGridET(); ---PROBLEM
+      // updateGridET();
         employeeTransactionGrid.setColumns("employeeID","transactionID");
         employeeTransactionGrid.addSelectionListener(e -> updateFormET());
 
