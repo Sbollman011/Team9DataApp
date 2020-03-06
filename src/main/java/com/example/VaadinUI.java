@@ -28,7 +28,8 @@ public class VaadinUI extends UI {
 
 
     //#############CUSTOMER##############################################################################################
-
+    
+    @Autowired
     private CustomerService customerService;
 
     private Customer customer;
@@ -68,7 +69,7 @@ public class VaadinUI extends UI {
 
 
      //############Customer GRID CREATION#########################################
-      // updateGridCustomer();
+       updateGridCustomer();
        customerGrid.setColumns("customerID","firstName","lastName","billAddress"
        ,"billCity", "billState","billZip","shipAddress"
        ,"shipCity","shipState","shipZip","phone","email");
