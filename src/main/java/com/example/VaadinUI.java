@@ -7,6 +7,17 @@ import com.vaadin.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+
+
+
+import java.sql.SQLException;
+
+import org.springframework.dao.DataAccessResourceFailureException;
+import org.springframework.lang.Nullable;
+
+
+
+
 import java.util.*;
 
 @SpringUI
@@ -28,7 +39,7 @@ public class VaadinUI extends UI {
 
 
     //#############CUSTOMER##############################################################################################
-    
+
     @Autowired
     private CustomerService customerService;
 
