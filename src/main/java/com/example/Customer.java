@@ -1,25 +1,25 @@
-/*package com.example;
+package com.example;
 
 public class Customer {
 
     
-    String customerID,firstName,lastName,shipAddress,shipCity,shipState,shipZip,billAddress,billCity,billState,billZip,phone,email;
+    String customerID,firstName,lastName,billAddress,billCity,billState,billZip,shipAddress,shipCity,shipState,shipZip,phone,email;
 
-    public Customer(String customerID,String firstName, String lastName, String shipAddress,String shipCity,String shipState
-        ,String shipZip,String billAddress, String billCity, String billState,String billZip, 
+    public Customer(String customerID,String firstName, String lastName, String billAddress,String billCity,String billState
+        ,String billZip,String shipAddress, String shipCity, String shipState,String shipZip, 
         String phone, String email) {
 
         this.customerID= customerID;
         this.firstName = firstName;
         this.lastName= lastName;
-        this.shipAddress = shipAddress;
-        this.shipCity = shipCity;
-        this.shipState = shipState;
-        this.shipZip = shipZip;
         this.billAddress = billAddress;
         this.billCity = billCity;
         this.billState = billState;
         this.billZip = billZip;
+        this.shipAddress = shipAddress;
+        this.shipCity = shipCity;
+        this.shipState = shipState;
+        this.shipZip = shipZip;
         this.phone = phone;
         this.email = email;
 
@@ -57,6 +57,14 @@ public class Customer {
 
     public void setShipAddress(String shipAddress) {
         this.shipAddress = shipAddress;
+    }
+
+    public String getShipCity() {
+        return shipCity;
+    }
+
+    public void setShipCity(String shipCity) {
+        this.shipCity = shipCity;
     }
 
     public String getShipState() {
@@ -124,4 +132,4 @@ public class Customer {
     }
 
 
-}*/
+}

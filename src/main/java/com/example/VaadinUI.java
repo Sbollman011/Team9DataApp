@@ -26,20 +26,8 @@ public class VaadinUI extends UI {
     private TextField subCategoryName = new TextField("SubCategory Name");
     private Button save = new Button("Save", e -> saveCategory());
 
-    /*##########EMPLOYEE##################################################################
 
-    private Employee_TransactionsService employeeTransactionService;
-
-    private Employee_Transaction employeeTransaction;
-
-    private Binder<Employee_Transaction> employeeTransactionBinder = new Binder<>(Employee_Transaction.class);
-
-    private Grid<Employee_Transaction> employeeTransactionGrid = new Grid(Employee_Transaction.class);
-    private TextField employeeID = new TextField("EmployeeID");
-    private TextField transactionID  = new TextField("TransactionID");
-    private Button save1 = new Button("Save", e -> saveEmployeeTransaction());
-    */
-    /*#############CUSTOMER##############################################################################################
+    //#############CUSTOMER##############################################################################################
 
     private CustomerService customerService;
 
@@ -61,8 +49,8 @@ public class VaadinUI extends UI {
     private TextField shipZip = new TextField("Ship Zip");
     private TextField phone = new TextField("Phone");
     private TextField email = new TextField("Email");
-    private Button saveCustomerButton = new Button("Save", e -> saveCustomer());
-*/
+    //private Button saveCustomerButton = new Button("Save", e -> saveCustomer());
+
     //#############################INIT####################################################################
 
     protected void init(VaadinRequest request) {
@@ -78,15 +66,9 @@ public class VaadinUI extends UI {
         categoryBinder.bindInstanceFields(this);
 
 
-    /*############EMPLOYEE TRANSACTION GRID CREATION#########################################
-      // updateGridET();
-        employeeTransactionGrid.setColumns("employeeID","transactionID");
-        employeeTransactionGrid.addSelectionListener(e -> updateFormET());
 
-        employeeTransactionBinder.bindInstanceFields(this);
-        */
-     /*############Customer GRID CREATION#########################################
-     //updateGridET(); ---PROBLEM
+     //############Customer GRID CREATION#########################################
+      // updateGridCustomer();
        customerGrid.setColumns("customerID","firstName","lastName","billAddress"
        ,"billCity", "billState","billZip","shipAddress"
        ,"shipCity","shipState","shipZip","phone","email");
@@ -96,9 +78,10 @@ public class VaadinUI extends UI {
 
 
 
-*/
+
      //#########################LAYOUT CREATION##############################################
-        VerticalLayout layout = new VerticalLayout(categoryGrid, categoryName, subCategoryName, save);
+        VerticalLayout layout = new VerticalLayout(categoryGrid, categoryName, subCategoryName, save,customerGrid,customerID,firstName,lastName,billAddress,
+        billCity,billState,billZip,shipAddress,shipCity,shipState,shipZip,phone,email);
         setContent(layout);
 
     }
@@ -136,9 +119,9 @@ public class VaadinUI extends UI {
 
 
 
-    /*######################Customer FUNCTIONS#######################################################################################################
+    //######################Customer FUNCTIONS#######################################################################################################
     private void updateFormCustomer() {
-        if (employeeTransactionGrid.asSingleSelect().isEmpty()) {
+        if (customerGrid.asSingleSelect().isEmpty()) {
             setFormVisible(false);
         } else {
             customer = customerGrid.asSingleSelect().getValue();
@@ -161,13 +144,13 @@ public class VaadinUI extends UI {
         shipZip.setVisible(visible);
         phone.setVisible(visible);
         email.setVisible(visible);
-        saveCustomerButton.setVisible(visible);
+       // saveCustomerButton.setVisible(visible);
     }
     
-    private void saveCustomer() {
-        customerService.update(customer);
+    /*private void saveCustomer() {
+        customerService.updateGridCustomer(customer);
         updateGridCustomer();
-    }
+    }*/
         
     private void updateGridCustomer() {
       List<Customer> customers = customerService.findAll();
@@ -175,5 +158,5 @@ public class VaadinUI extends UI {
         setFormVisible(false);
 
     }
-    */
+    
 }
