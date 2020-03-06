@@ -28,5 +28,5 @@ jobs:
       with:
         app-name: 'team9dataapp'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_56d70753f4a943d68535eb3c2577c404 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_74ef814ab6e241a7aab854dd10734b70 }}
         package: '${{ github.workspace }}/target/*.war'
