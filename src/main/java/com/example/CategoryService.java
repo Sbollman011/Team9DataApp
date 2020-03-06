@@ -13,13 +13,13 @@ public class CategoryService {
     private JdbcTemplate jdbcTemplate;
 
     public List<Category> findAll() {
-        return jdbcTemplate.query("SELECT categoryName, subCategoryName, description FROM Category",
-                (rs, rowNum) -> new Category(rs.getString("categoryName"), rs.getString("subCategoryName"), rs.getString("description")));
+        return jdbcTemplate.query("SELECT categoryName, subCategoryName FROM Category",
+                (rs, rowNum) -> new Category(rs.getString("categoryName"), rs.getString("subCategoryName")));
     }
 
     public void update(Category category) {
-        jdbcTemplate.update("UPDATE Category SET subCategoryName=?, description=? WHERE categoryName=?",
-                category.getSubCategoryName(), category.getDescription(), category.getCategoryName());
+        jdbcTemplate.update("UPDATE Category SET subCategoryName=? WHERE categoryName=?",
+                category.getSubCategoryName(), category.getCategoryName());
     }
 
 }

@@ -3,12 +3,11 @@ package com.example;
 public class Category {
 
     
-    String categoryName,subCategoryName,description;
+    String categoryName,subCategoryName;
 
-    public Category(String categoryName, String subCategoryName, String description) {
+    public Category(String categoryName, String subCategoryName) {
         this.categoryName= categoryName;
         this.subCategoryName = subCategoryName;
-        this.description= description;
     }
 
     
@@ -28,12 +27,5 @@ public class Category {
         this.subCategoryName = subCategoryName;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
 }

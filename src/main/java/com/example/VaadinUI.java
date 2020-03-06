@@ -24,10 +24,9 @@ public class VaadinUI extends UI {
     private Grid<Category> categoryGrid = new Grid(Category.class);
     private TextField categoryName = new TextField("Category Name");
     private TextField subCategoryName = new TextField("SubCategory Name");
-    private TextField description = new TextField("Description");
     private Button save = new Button("Save", e -> saveCategory());
 
-    //##########EMPLOYEE##################################################################
+    /*##########EMPLOYEE##################################################################
 
     private Employee_TransactionsService employeeTransactionService;
 
@@ -39,7 +38,7 @@ public class VaadinUI extends UI {
     private TextField employeeID = new TextField("EmployeeID");
     private TextField transactionID  = new TextField("TransactionID");
     private Button save1 = new Button("Save", e -> saveEmployeeTransaction());
-
+    */
     /*#############CUSTOMER##############################################################################################
 
     private CustomerService customerService;
@@ -73,19 +72,19 @@ public class VaadinUI extends UI {
     //###############CATEGORY GRID CREATION#############################################
         updateGrid();
 
-        categoryGrid.setColumns("categoryName","subCategoryName", "description");
+        categoryGrid.setColumns("categoryName","subCategoryName");
         categoryGrid.addSelectionListener(e -> updateForm());
 
         categoryBinder.bindInstanceFields(this);
 
 
-    //############EMPLOYEE TRANSACTION GRID CREATION#########################################
+    /*############EMPLOYEE TRANSACTION GRID CREATION#########################################
       // updateGridET();
         employeeTransactionGrid.setColumns("employeeID","transactionID");
         employeeTransactionGrid.addSelectionListener(e -> updateFormET());
 
         employeeTransactionBinder.bindInstanceFields(this);
-
+        */
      /*############Customer GRID CREATION#########################################
      //updateGridET(); ---PROBLEM
        customerGrid.setColumns("customerID","firstName","lastName","billAddress"
@@ -99,7 +98,7 @@ public class VaadinUI extends UI {
 
 */
      //#########################LAYOUT CREATION##############################################
-        VerticalLayout layout = new VerticalLayout(categoryGrid, categoryName, subCategoryName, description, save,employeeTransactionGrid,employeeID,transactionID,save1);
+        VerticalLayout layout = new VerticalLayout(categoryGrid, categoryName, subCategoryName, save);
         setContent(layout);
 
     }
@@ -126,7 +125,6 @@ public class VaadinUI extends UI {
     private void setFormVisible(boolean visible) {
         categoryName.setVisible(visible);
         subCategoryName.setVisible(visible);
-        description.setVisible(visible);
         save.setVisible(visible);
     }
 
@@ -136,36 +134,7 @@ public class VaadinUI extends UI {
     }
 
 
-//######################EMPLOYEE TRANSACTION FUNCTIONS#######################################################################################################
 
-
-    private void updateFormET() {
-        if (employeeTransactionGrid.asSingleSelect().isEmpty()) {
-            setFormVisible(false);
-        } else {
-            employeeTransaction = employeeTransactionGrid.asSingleSelect().getValue();
-            employeeTransactionBinder.setBean(employeeTransaction);
-            setFormVisible(true);
-        }
-    }
-
-    private void setFormVisibleET(boolean visible) {
-        employeeID.setVisible(visible);
-        transactionID.setVisible(visible);
-        save.setVisible(visible);
-    }
-    
-    private void saveEmployeeTransaction() {
-        employeeTransactionService.update(employeeTransaction);
-        updateGridET();
-    }
-        
-    private void updateGridET() {
-      List<Employee_Transaction> employeeTransactions = employeeTransactionService.findAll();
-       employeeTransactionGrid.setItems(employeeTransactions);
-        setFormVisible(false);
-
-    }
 
     /*######################Customer FUNCTIONS#######################################################################################################
     private void updateFormCustomer() {
