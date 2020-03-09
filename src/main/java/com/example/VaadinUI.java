@@ -44,8 +44,8 @@ public class VaadinUI extends UI {
 
     private Grid<Customer> customerGrid = new Grid(Customer.class);
     private TextField customerID = new TextField("CustomerID");
-    private TextField firstName  = new TextField("First Name");
-    private TextField lastName = new TextField("Last Name");
+    private TextField customerFirstName  = new TextField("First Name");
+    private TextField customerLastName = new TextField("Last Name");
     private TextField billAddress = new TextField("Bill Address");
     private TextField billCity = new TextField("Bill City");
     private TextField billState = new TextField("Bill State");
@@ -57,6 +57,25 @@ public class VaadinUI extends UI {
     private TextField phone = new TextField("Phone");
     private TextField email = new TextField("Email");
    private Button saveCustomerButton = new Button("Save Changes", e -> saveCustomer());
+
+   //##########################  EMPLOYEE  ############################################################
+   @Autowired
+   private EmployeeService employeeService;
+
+   private Employee employee;
+
+   private Binder<Employee> employeeBinder = new Binder<>(Employee.class);
+
+   private Grid<Employee> employeeGrid = new Grid(Employee.class);
+   private TextField employeeID = new TextField("Employee ID");
+   private TextField employeeFirstName  = new TextField("First Name");
+   private TextField employeeLastName = new TextField("Last Name");
+   private TextField employeeStreetAddress = new TextField("Street Address");
+   private TextField employeeCity = new TextField("City");
+   private TextField employeeState = new TextField("State");
+   private TextField employeeZip = new TextField("Zip");
+   private TextField employeeStoreID = new TextField("Employee Store ID");
+   private Button saveEmployeeButton = new Button("Save Changes", e -> saveEmployee());
 
     //#############################INIT####################################################################
 
@@ -75,19 +94,28 @@ public class VaadinUI extends UI {
 
      //############Customer GRID CREATION#########################################
        updateGridCustomer();
-       customerGrid.setColumns("customerID","firstName","lastName","billAddress"
+       customerGrid.setColumns("customerID","customerFirstName","customerLastName","billAddress"
        ,"billCity", "billState","billZip","shipAddress"
        ,"shipCity","shipState","shipZip","phone","email");
        customerGrid.addSelectionListener(e -> updateFormCustomer());
 
        customerBinder.bindInstanceFields(this);
 
+    //########### Employee GRID CREATION ###############################################//#endregion
+    updateGridEmployee();
+    employeeGrid.setColumns("employeeID","employeeFirstName","employeeLastName","employeeStreetAddress"
+    ,"employeeCity", "employeeState","employeeZip","employeeStoreID");
 
+    employeeGrid.addSelectionListener(e -> updateFormEmployee());
+
+    employeeBinder.bindInstanceFields(this);
 
 
      //#########################LAYOUT CREATION##############################################
-        VerticalLayout layout = new VerticalLayout(categoryGrid, categoryName, subCategoryName, save,insert,customerGrid,customerID,firstName,lastName,billAddress,
-        billCity,billState,billZip,shipAddress,shipCity,shipState,shipZip,phone,email,saveCustomerButton);
+        VerticalLayout layout = new VerticalLayout(categoryGrid, categoryName, subCategoryName, save,insert,customerGrid,
+        customerID,customerFirstName,customerLastName,billAddress,billCity,billState,billZip,shipAddress,shipCity,shipState,
+        shipZip,phone,email,saveCustomerButton,employeeGrid,employeeID,employeeFirstName,employeeLastName,
+        employeeStreetAddress, employeeCity, employeeState, employeeZip, employeeStoreID,saveEmployeeButton);
         setContent(layout);
 
     }
@@ -150,8 +178,8 @@ public class VaadinUI extends UI {
 
     private void setFormVisibleCustomer(boolean visible) {
         customerID.setVisible(visible);
-        firstName.setVisible(visible);
-        lastName.setVisible(visible);
+        customerFirstName.setVisible(visible);
+        customerLastName.setVisible(visible);
         billAddress.setVisible(visible);
         billCity.setVisible(visible);
         billState.setVisible(visible);
@@ -171,4 +199,43 @@ public class VaadinUI extends UI {
     }
         
     
+
+
+ //######################Employee FUNCTIONS#######################################################################################################
+ private void updateGridEmployee() {
+    List<Employee> employees = employeeService.findAll();
+      employeeGrid.setItems(employees);
+      setFormVisibleEmployee(false);
+  }
+
+
+private void updateFormEmployee() {
+    if (employeeGrid.asSingleSelect().isEmpty()) {
+        setFormVisibleEmployee(false);
+    } else {
+        employee = employeeGrid.asSingleSelect().getValue();
+        employeeBinder.setBean(employee);
+        setFormVisibleEmployee(true);
+    }
 }
+
+private void setFormVisibleEmployee(boolean visible) {
+    employeeID.setVisible(visible);
+    employeeFirstName.setVisible(visible);
+    employeeLastName.setVisible(visible);
+    employeeStreetAddress.setVisible(visible);
+    employeeCity.setVisible(visible);
+    employeeState.setVisible(visible);
+    employeeZip.setVisible(visible);
+    employeeStoreID.setVisible(visible);
+    saveEmployeeButton.setVisible(visible);
+}
+
+private void saveEmployee() {
+    employeeService.update(employee);
+    updateGridEmployee();
+}
+    
+
+}
+

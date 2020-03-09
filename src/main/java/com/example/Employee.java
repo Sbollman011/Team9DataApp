@@ -3,21 +3,21 @@ package com.example;
 public class Employee {
 
     double salary;
-    String employeeID,firstName, lastName, streetAddress, city, 
-    state,zip, employeeStoreID;
+    String employeeID,employeeFirstName, employeeLastName, employeeStreetAddress, employeeCity, 
+    employeeState,employeeZip, employeeStoreID;
 
-    public Employee(String employeeID, String firstName, String lastName,
-        double salary, String streetAddress, String city, String state, 
-        String zip, String employeeStoreID) {
+    public Employee(String employeeID, String employeeFirstName, String employeeLastName,
+        double salary, String employeeStreetAddress, String employeeCity, String employeeState, 
+        String employeeZip, String employeeStoreID) {
 
         this.employeeID= employeeID;
-        this.firstName = firstName;
-        this.lastName= lastName;
+        this.employeeFirstName = employeeFirstName;
+        this.employeeLastName= employeeLastName;
         this.salary = salary;
-        this.streetAddress = streetAddress;
-        this.city = city;
-        this.state = state;
-        this.zip = zip;
+        this.employeeStreetAddress = employeeStreetAddress;
+        this.employeeCity = employeeCity;
+        this.employeeState = employeeState;
+        this.employeeZip = employeeZip;
         this.employeeStoreID = employeeStoreID;
     }
 
@@ -30,13 +30,71 @@ public class Employee {
         this.employeeID = employeeID;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getEmployeeFirstName() {
+        return employeeFirstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setEmployeeFirstName(String employeeFirstName) {
+        this.employeeFirstName = employeeFirstName;
     }
+
+    public String getEmployeeLastName() {
+        return employeeLastName;
+    }
+
+    public void setEmployeeLastName(String employeeLastName) {
+        this.employeeLastName = employeeLastName;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    public String getEmployeeStreetAddress() {
+        return employeeStreetAddress;
+    }
+
+    public void setStreetAddress(String employeeStreetAddress) {
+        this.employeeStreetAddress =employeeStreetAddress;
+    }
+
+    public String getEmployeeCity() {
+        return employeeCity;
+    }
+
+    public void setCity(String employeeCity) {
+        this.employeeCity =employeeCity;
+    }
+
+    public String getEmployeeState() {
+        return employeeState;
+    }
+
+    public void setState(String employeeState) {
+        this.employeeState = employeeState;
+    }
+
+    public String getEmployeeZip() {
+        return employeeZip;
+    }
+
+    public void setEmployeeZip(String employeeZip) {
+        this.employeeZip = employeeZip;
+    }
+
+    public String getEmployeeStoreID(){
+        return employeeStoreID;
+    }
+
+    public void getEmployeeStoreID(String employeeStoreID){
+        this.employeeStoreID = employeeStoreID;
+    }
+
+
 
     
 

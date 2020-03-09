@@ -3,15 +3,15 @@ package com.example;
 public class Customer {
 
     
-    String customerID,firstName,lastName,billAddress,billCity,billState,billZip,shipAddress,shipCity,shipState,shipZip,phone,email;
+    String customerID,customerFirstName,customerLastName,billAddress,billCity,billState,billZip,shipAddress,shipCity,shipState,shipZip,phone,email;
 
-    public Customer(String customerID,String firstName, String lastName, String billAddress,String billCity,String billState
+    public Customer(String customerID,String customerFirstName, String customerLastName, String billAddress,String billCity,String billState
         ,String billZip,String shipAddress, String shipCity, String shipState,String shipZip, 
         String phone, String email) {
 
         this.customerID= customerID;
-        this.firstName = firstName;
-        this.lastName= lastName;
+        this.customerFirstName = customerFirstName;
+        this.customerLastName= customerLastName;
         this.billAddress = billAddress;
         this.billCity = billCity;
         this.billState = billState;
@@ -35,20 +35,20 @@ public class Customer {
         this.customerID = customerID;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getCustomerFirstName() {
+        return customerFirstName;
     }
 
-    public void setCategoryName(String firstName) {
-        this.firstName = firstName;
+    public void setCustomerFirstName(String customerFirstName) {
+        this.customerFirstName = customerFirstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getCustomerLastName() {
+        return customerLastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setCustomerLastName(String customerLastName) {
+        this.customerLastName = customerLastName;
     }
 
     public String getShipAddress() {
