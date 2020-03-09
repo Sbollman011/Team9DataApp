@@ -4,6 +4,7 @@ import com.vaadin.data.Binder;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -68,7 +69,6 @@ public class VaadinUI extends UI {
 
         categoryGrid.setColumns("categoryName","subCategoryName");
         categoryGrid.addSelectionListener(e -> updateForm());
-
         categoryBinder.bindInstanceFields(this);
 
 
@@ -134,17 +134,17 @@ public class VaadinUI extends UI {
     private void updateGridCustomer() {
         List<Customer> customers = customerService.findAll();
           customerGrid.setItems(customers);
-          setFormVisible(false);
+          setFormVisibleCustomer(false);
       }
 
     
     private void updateFormCustomer() {
         if (customerGrid.asSingleSelect().isEmpty()) {
-            setFormVisible(false);
+            setFormVisibleCustomer(false);
         } else {
             customer = customerGrid.asSingleSelect().getValue();
             customerBinder.setBean(customer);
-            setFormVisible(true);
+            setFormVisibleCustomer(true);
         }
     }
 
