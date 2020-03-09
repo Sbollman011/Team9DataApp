@@ -6,14 +6,6 @@ import org.springframework.stereotype.Component;
 
 
 
-import java.sql.SQLException;
-
-import org.springframework.dao.DataAccessResourceFailureException;
-import org.springframework.lang.Nullable;
-
-
-
-
 import java.util.*;
 
 @Component
@@ -23,13 +15,17 @@ public class CategoryService {
     private JdbcTemplate jdbcTemplate;
 
     public List<Category> findAll() {
-        return jdbcTemplate.query("SELECT categoryName, subCategoryName FROM Category",
-                (rs, rowNum) -> new Category(rs.getString("categoryName"), rs.getString("subCategoryName")));
+        return jdbcTemplate.query("SELECT CategoryName, SubCategoryName FROM Category",
+                (rs, rowNum) -> new Category(rs.getString("CategoryName"), rs.getString("SubCategoryName")));
     }
 
     public void update(Category category) {
-        jdbcTemplate.update("UPDATE Category SET subCategoryName=? WHERE categoryName=?",
-                category.getSubCategoryName(), category.getCategoryName());
+        jdbcTemplate.update("UPDATE Category SET SubCategoryName=? WHERE CategoryName=?",
+                category.getCategoryName(),category.getSubCategoryName());
     }
 
+    public List<Category> insert(){
+        return jdbcTemplate.query("INSERT INTO Category (CategoryName,SubCategoryName) VALUES (?,?) ",
+        (rs,rowNum)-> new Category(rs.getString("CategoryName"),rs.getString("SubCategoryName")));
+    }
 }

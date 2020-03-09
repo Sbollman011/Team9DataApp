@@ -5,15 +5,8 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 
-
-
-import java.sql.SQLException;
-
-import org.springframework.dao.DataAccessResourceFailureException;
-import org.springframework.lang.Nullable;
 
 
 
@@ -35,7 +28,8 @@ public class VaadinUI extends UI {
     private Grid<Category> categoryGrid = new Grid(Category.class);
     private TextField categoryName = new TextField("Category Name");
     private TextField subCategoryName = new TextField("SubCategory Name");
-    private Button save = new Button("Save", e -> saveCategory());
+    private Button save = new Button("Save Changes", e -> saveCategory());
+    private Button insert = new Button("Insert Category", e -> insertCategory());
 
 
     //#############CUSTOMER##############################################################################################
@@ -61,7 +55,7 @@ public class VaadinUI extends UI {
     private TextField shipZip = new TextField("Ship Zip");
     private TextField phone = new TextField("Phone");
     private TextField email = new TextField("Email");
-    //private Button saveCustomerButton = new Button("Save", e -> saveCustomer());
+   private Button saveCustomerButton = new Button("Save Changes", e -> saveCustomer());
 
     //#############################INIT####################################################################
 
@@ -92,8 +86,8 @@ public class VaadinUI extends UI {
 
 
      //#########################LAYOUT CREATION##############################################
-        VerticalLayout layout = new VerticalLayout(categoryGrid, categoryName, subCategoryName, save,customerGrid,customerID,firstName,lastName,billAddress,
-        billCity,billState,billZip,shipAddress,shipCity,shipState,shipZip,phone,email);
+        VerticalLayout layout = new VerticalLayout(categoryGrid, categoryName, subCategoryName, save,insert,customerGrid,customerID,firstName,lastName,billAddress,
+        billCity,billState,billZip,shipAddress,shipCity,shipState,shipZip,phone,email,saveCustomerButton);
         setContent(layout);
 
     }
@@ -128,10 +122,22 @@ public class VaadinUI extends UI {
         updateGrid();
     }
 
+    private void insertCategory() {
+        categoryService.insert();
+        updateGrid();
+    }
+
 
 
 
     //######################Customer FUNCTIONS#######################################################################################################
+    private void updateGridCustomer() {
+        List<Customer> customers = customerService.findAll();
+          customerGrid.setItems(customers);
+          setFormVisible(false);
+      }
+
+    
     private void updateFormCustomer() {
         if (customerGrid.asSingleSelect().isEmpty()) {
             setFormVisible(false);
@@ -156,19 +162,13 @@ public class VaadinUI extends UI {
         shipZip.setVisible(visible);
         phone.setVisible(visible);
         email.setVisible(visible);
-       // saveCustomerButton.setVisible(visible);
+        saveCustomerButton.setVisible(visible);
     }
     
-    /*private void saveCustomer() {
-        customerService.updateGridCustomer(customer);
+    private void saveCustomer() {
+        customerService.update(customer);
         updateGridCustomer();
-    }*/
-        
-    private void updateGridCustomer() {
-      List<Customer> customers = customerService.findAll();
-       customerGrid.setItems(customers);
-        setFormVisible(false);
-
     }
+        
     
 }

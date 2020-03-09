@@ -5,10 +5,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 
-import java.sql.SQLException;
-
-import org.springframework.dao.DataAccessResourceFailureException;
-import org.springframework.lang.Nullable;
 
 
 
@@ -27,9 +23,10 @@ public class CustomerService {
                 rs.getString("BillCity"),rs.getString("BillState"),rs.getString("BillZip"),rs.getString("ShipAddress"),rs.getString("ShipCity"),rs.getString("ShipState"),rs.getString("ShipZip"),rs.getString("Phone"),rs.getString("Email")));
     }
 
-    /*public void update(Customer customer) {
-        jdbcTemplate.update("UPDATE Customer SET CustomerID=?, First_Name=?, Last_Name, Ship_Address,Ship_City,Ship_State,Ship_Zip,Bill_Address,Bill_city,Bill_State,Bill_Zip,Phone,Email  WHERE CustomerID=?",
-              customer.getSubCategoryName(), customer.getDescription(), customer.getCategoryName());
-    }*/
+    public void update(Customer customer) {
+        jdbcTemplate.update("UPDATE Customer SET FirstName=?, LastName=?, BillAddress=?, BillCity=?, BillState=?, BillZip=?, ShipAddress=?, ShipCity=?, ShipState=?, ShipZip=?, Phone=?, Email=? WHERE CustomerID=?",
+              customer.getCustomerID(), customer.getFirstName(), customer.getLastName(),customer.getBillAddress(),customer.getBillCity(),customer.getBillState(),customer.getBillZip(),
+              customer.getShipAddress(),customer.getShipCity(),customer.getShipState(),customer.getShipZip(),customer.getPhone(),customer.getEmail());
+    }
 
 }
