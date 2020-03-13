@@ -77,6 +77,60 @@ public class VaadinUI extends UI {
    private TextField employeeStoreID = new TextField("Employee Store ID");
    private Button saveEmployeeButton = new Button("Save Changes", e -> saveEmployee());
 
+
+ //##########################  ORDER  ############################################################
+   @Autowired
+   private OrderService orderService;
+
+   private Order order;
+
+   private Binder<Order> orderBinder = new Binder<>(Order.class);
+
+   private Grid<Order> orderGrid = new Grid(Order.class);
+   private TextField orderID = new TextField("Order ID");
+   private TextField orderDate  = new TextField("Order Date");
+   private TextField orderShipDate = new TextField("Order Ship Date");
+   private TextField orderTotal = new TextField("Order Total");
+   private TextField orderVendorID = new TextField("Order Vendor ID");
+   private TextField orderStoreID = new TextField("Order Store ID");
+   private Button saveOrderButton = new Button("Save Changes", e -> saveOrder());
+
+   //#######################PRODUCT##########################################################
+
+   @Autowired
+   private ProductService productService ;
+
+   private Product product;
+
+   private Binder<Product> productBinder = new Binder<>(Product.class);
+
+   private Grid<Product> productGrid = new Grid(Product.class);
+   private TextField productID = new TextField("Product ID");
+   private TextField productName = new TextField("Product Name");
+   private TextField productDescription = new TextField("Product Description");
+   private TextField productPrice = new TextField("Product Price");
+   private Button saveProduct = new Button("Save Changes", e -> saveProduct());
+   //private Button insertProduct = new Button("Insert Category", e -> insertCategory());
+
+
+   //#######################Product_Order ##########################################################
+
+   @Autowired
+   private Product_OrderedService productOrderedService;
+
+   private Product_Ordered product_ordered;
+
+   private Binder<Product_Ordered> productOrderedBinder = new Binder<>(Product_Ordered.class);
+
+   private Grid<Product_Ordered> productOrderedGrid = new Grid(Product_Ordered.class);
+   private TextField poOrderedID = new TextField("Product Ordered ID");
+   private TextField productOrderedProductID = new TextField("Product Ordered Product ID");
+   private TextField productOrderedQuantity = new TextField("Product Ordered Quantity");
+   private Button saveProductOrdered = new Button("Save Changes", e -> saveProductOrdered());
+   //private Button insert = new Button("Insert Category", e -> insertCategory());
+
+
+   
     //#############################INIT####################################################################
 
     protected void init(VaadinRequest request) {
@@ -86,20 +140,20 @@ public class VaadinUI extends UI {
     //###############CATEGORY GRID CREATION#############################################
         updateGrid();
 
-        categoryGrid.setColumns("categoryName","subCategoryName");
-        categoryGrid.addSelectionListener(e -> updateForm());
-        categoryBinder.bindInstanceFields(this);
+    categoryGrid.setColumns("categoryName","subCategoryName");
+    categoryGrid.addSelectionListener(e -> updateForm());
+    categoryBinder.bindInstanceFields(this);
 
 
 
      //############Customer GRID CREATION#########################################
-       updateGridCustomer();
-       customerGrid.setColumns("customerID","customerFirstName","customerLastName","billAddress"
-       ,"billCity", "billState","billZip","shipAddress"
-       ,"shipCity","shipState","shipZip","phone","email");
-       customerGrid.addSelectionListener(e -> updateFormCustomer());
+    updateGridCustomer();
+    customerGrid.setColumns("customerID","customerFirstName","customerLastName","billAddress"
+    ,"billCity", "billState","billZip","shipAddress"
+    ,"shipCity","shipState","shipZip","phone","email");
+    customerGrid.addSelectionListener(e -> updateFormCustomer());
 
-       customerBinder.bindInstanceFields(this);
+    customerBinder.bindInstanceFields(this);
 
     //########### Employee GRID CREATION ###############################################//#endregion
     updateGridEmployee();
@@ -110,13 +164,40 @@ public class VaadinUI extends UI {
 
     employeeBinder.bindInstanceFields(this);
 
+    //########### Order GRID CREATION ###############################################//#endregion
+    updateGridOrder();
+    orderGrid.setColumns("orderID","orderDate","orderShipDate","orderTotal"
+    ,"orderVendorID", "orderStoreID");
+
+    orderGrid.addSelectionListener(e -> updateFormOrder());
+
+    orderBinder.bindInstanceFields(this);
+
+     //###############Product Grid Creation#############################################
+     updateGridProduct();
+
+     productGrid.setColumns("productID","productName","productDescription","productPrice");
+     productGrid.addSelectionListener(e -> updateFormProduct());
+     productBinder.bindInstanceFields(this);
+
+    //###############Product Ordered Grid Creation#############################################
+    updateGridProductOrdered();
+
+    productOrderedGrid.setColumns("poOrderedID","productOrderedProductID","productOrderedQuantity");
+    productOrderedGrid.addSelectionListener(e -> updateFormProductOrdered());
+    productOrderedBinder.bindInstanceFields(this);
+   
+   
+
 
      //#########################LAYOUT CREATION##############################################
-        VerticalLayout layout = new VerticalLayout(categoryGrid, categoryName, subCategoryName, save,insert,customerGrid,
-        customerID,customerFirstName,customerLastName,billAddress,billCity,billState,billZip,shipAddress,shipCity,shipState,
-        shipZip,phone,email,saveCustomerButton,employeeGrid,employeeID,employeeFirstName,employeeLastName,
-        employeeStreetAddress, employeeCity, employeeState, employeeZip, employeeStoreID,saveEmployeeButton);
-        setContent(layout);
+    VerticalLayout layout = new VerticalLayout(categoryGrid, categoryName, subCategoryName, save,insert,customerGrid,
+    customerID,customerFirstName,customerLastName,billAddress,billCity,billState,billZip,shipAddress,shipCity,shipState,
+    shipZip,phone,email,saveCustomerButton,employeeGrid,employeeID,employeeFirstName,employeeLastName,
+    employeeStreetAddress, employeeCity, employeeState, employeeZip, employeeStoreID,saveEmployeeButton,orderGrid,orderID,orderDate,orderShipDate,
+    orderTotal,orderVendorID,orderStoreID,saveOrderButton,productGrid,productID,productName,productDescription,productPrice,saveProduct, productOrderedGrid,
+    poOrderedID, productOrderedProductID, productOrderedQuantity,saveProductOrdered);
+    setContent(layout);
 
     }
 
@@ -237,5 +318,113 @@ private void saveEmployee() {
 }
     
 
+
+ //######################Order FUNCTIONS#######################################################################################################
+ private void updateGridOrder() {
+    List<Order> orders = orderService.findAll();
+      orderGrid.setItems(orders);
+      setFormVisibleOrder(false);
+  }
+
+
+private void updateFormOrder() {
+    if (orderGrid.asSingleSelect().isEmpty()) {
+        setFormVisibleOrder(false);
+    } else {
+        order = orderGrid.asSingleSelect().getValue();
+        orderBinder.setBean(order);
+        setFormVisibleOrder(true);
+    }
 }
+
+private void setFormVisibleOrder(boolean visible) {
+    orderID.setVisible(visible);
+    orderDate.setVisible(visible);
+    orderShipDate.setVisible(visible);
+    orderTotal.setVisible(visible);
+    orderVendorID.setVisible(visible);
+    orderStoreID.setVisible(visible);
+    
+}
+
+private void saveOrder() {
+    orderService.update(order);
+    updateGridOrder();
+}
+   //########################PRODUCT FUNCTION########################################################
+
+   private void updateGridProduct() {
+    List<Product> products = productService.findAll();
+      productGrid.setItems(products);
+      setFormVisibleProduct(false);
+  }
+
+
+  private void updateFormProduct() {
+      if (productGrid.asSingleSelect().isEmpty()) {
+          setFormVisibleProduct(false);
+      } else {
+          product = productGrid.asSingleSelect().getValue();
+          productBinder.setBean(product);
+          setFormVisibleProduct(true);
+      }
+  }
+
+  private void setFormVisibleProduct(boolean visible) {
+      productID.setVisible(visible);
+      productName.setVisible(visible);
+      productDescription.setVisible(visible);
+      productPrice.setVisible(visible);
+      save.setVisible(visible);
+  }
+
+  private void saveProduct() {
+      productService.update(product);
+      updateGridProduct();
+  }
+
+  /*private void insertProduct() {
+      categoryService.insert();
+      updateGridProduct();*/
+  //} 
+
+   //########################Product Ordered FUNCTIONS########################################################
+
+   private void updateGridProductOrdered() {
+    List<Product_Ordered> productsOrdered = productOrderedService.findAll();
+      productOrderedGrid.setItems(productsOrdered);
+      setFormVisibleProductOrdered(false);
+  }
+
+
+  private void updateFormProductOrdered() {
+      if (productOrderedGrid.asSingleSelect().isEmpty()) {
+          setFormVisibleProductOrdered(false);
+      } else {
+          product_ordered = productOrderedGrid.asSingleSelect().getValue();
+          productOrderedBinder.setBean(product_ordered);
+          setFormVisibleProductOrdered(true);
+      }
+  }
+
+  private void setFormVisibleProductOrdered(boolean visible) {
+      poOrderedID.setVisible(visible);
+      productOrderedProductID.setVisible(visible);
+      productOrderedQuantity.setVisible(visible);
+
+      saveProductOrdered.setVisible(visible);
+  }
+
+  private void saveProductOrdered() {
+      productOrderedService.update(product_ordered);
+      updateGridProductOrdered();
+  }
+}
+
+  /*private void insertCate() {
+      categoryService.insert();
+      updateGrid();
+  }*/
+
+
 
