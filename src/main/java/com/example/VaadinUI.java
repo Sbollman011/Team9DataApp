@@ -129,7 +129,23 @@ public class VaadinUI extends UI {
    private Button saveProductOrdered = new Button("Save Changes", e -> saveProductOrdered());
    //private Button insert = new Button("Insert Category", e -> insertCategory());
 
+    //#######################Product_Order ##########################################################
 
+    @Autowired
+
+    
+    private productCategoriesService productcategoriesService;
+    private productCategories productcategories;
+    
+
+    private Binder<productCategories> productCategoriesBinder = new Binder<>(productCategories.class);
+
+    private Grid<productCategories> productCategoriesGrid = new Grid(productCategories.class);
+    private TextField productCategoriesProductID = new TextField("Product ID");
+    private TextField productCategoriesName = new TextField("Product Category Name");
+    private TextField productCategoriesSubName = new TextField("Product Ordered Quantity");
+    private Button saveProductCategories = new Button("Save Changes", e -> saveProductCategories());
+    //private Button insert = new Button("Insert Category", e -> insertCategory());
    
     //#############################INIT####################################################################
 
@@ -187,7 +203,13 @@ public class VaadinUI extends UI {
     productOrderedGrid.addSelectionListener(e -> updateFormProductOrdered());
     productOrderedBinder.bindInstanceFields(this);
    
-   
+   //###############ProductCategories Creation #############################################
+   updateGridProductCategories();
+
+   //productCategoriesGrid.setColumns("productCategoriesProductID","productCategoryName","ProductCategorySubName");
+   productCategoriesGrid.addSelectionListener(e -> updateFormProductCategories());
+   productCategoriesBinder.bindInstanceFields(this);
+  
 
 
      //#########################LAYOUT CREATION##############################################
@@ -196,7 +218,7 @@ public class VaadinUI extends UI {
     shipZip,phone,email,saveCustomerButton,employeeGrid,employeeID,employeeFirstName,employeeLastName,
     employeeStreetAddress, employeeCity, employeeState, employeeZip, employeeStoreID,saveEmployeeButton,orderGrid,orderID,orderDate,orderShipDate,
     orderTotal,orderVendorID,orderStoreID,saveOrderButton,productGrid,productID,productName,productDescription,productPrice,saveProduct, productOrderedGrid,
-    poOrderedID, productOrderedProductID, productOrderedQuantity,saveProductOrdered);
+    poOrderedID, productOrderedProductID, productOrderedQuantity,saveProductOrdered,productCategoriesGrid,productCategoriesProductID, productCategoriesName,productCategoriesSubName);
     setContent(layout);
 
     }
@@ -419,12 +441,49 @@ private void saveOrder() {
       productOrderedService.update(product_ordered);
       updateGridProductOrdered();
   }
-}
+
 
   /*private void insertCate() {
       categoryService.insert();
       updateGrid();
   }*/
 
+   //########################Product Ordered FUNCTIONS########################################################
+
+   private void updateGridProductCategories() {
+    List<productCategories> ProductCategories = productcategoriesService.findAll();
+      productCategoriesGrid.setItems(ProductCategories);
+      setFormVisibleProductOrdered(false);
+  }
+
+
+  private void updateFormProductCategories() {
+      if (productCategoriesGrid.asSingleSelect().isEmpty()) {
+          setFormVisibleProductCategories(false);
+      } else {
+          productcategories = productCategoriesGrid.asSingleSelect().getValue();
+          productCategoriesBinder.setBean(productcategories);
+          setFormVisibleProductOrdered(true);
+      }
+  }
+
+  private void setFormVisibleProductCategories(boolean visible) {
+      productCategoriesProductID.setVisible(visible);
+      productCategoriesName.setVisible(visible);
+      productCategoriesSubName.setVisible(visible);
+
+      saveProductCategories.setVisible(visible);
+  }
+
+  private void saveProductCategories() {
+      productcategoriesService.update(productcategories);
+      updateGridProductCategories();
+  }
+}
+
+  /*private void insertCate() {
+      categoryService.insert();
+      updateGrid();
+  }*/
 
 
