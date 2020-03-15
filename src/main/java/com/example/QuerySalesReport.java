@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.*;
 
 @Component
-public class Query {
+public class QuerySalesReport {
 
     //@Autowired
     //private JdbcTemplate jdbcTemplate;
@@ -17,13 +17,21 @@ public class Query {
     public void storeSalesReport() {
         
     }
-    public void employeeSalesReport() {}
+    /*public void employeeSalesReport() {}
     public void checkInventory() {}
     public void checkOrders() {}
     public void searchProducts() {}
     public void checkProducts() {}
     public void checkCustomerHistory() {}
     public void checkSimiliarProducts() {}
-    public void checkEmployeeRecords() {}
-
+    public void checkEmployeeRecords() {}*/
 }
+
+    /*public void employeeSalesReport() {}
+    public void checkInventory() {}
+    public void checkOrders() {}
+    public void searchProducts() {}
+    public void checkProducts() {}
+    public void checkCustomerHistory() {}
+    public void checkSimiliarProducts() {}
+    public void checkEmployeeRecords() {}*/

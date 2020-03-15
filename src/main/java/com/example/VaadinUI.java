@@ -15,8 +15,11 @@ import java.util.*;
 public class VaadinUI extends UI {
 
 //############################TITLE################################################
-
 Label Title = new Label("<b><font size=32 color=navy>Team 9 Inventory Solutions</font></b>",ContentMode.HTML);
+
+Label QueriesLabel = new Label("<b><font size=18 color=dodgerblue>Useful Queries</font></b>",ContentMode.HTML);
+
+Label dbTableLabel = new Label("<b><font size=18 color=dodgerblue>Database Tables</font></b>",ContentMode.HTML);
 //#######################CATEGORY##########################################################
 
     @Autowired
@@ -181,8 +184,12 @@ Label Title = new Label("<b><font size=32 color=navy>Team 9 Inventory Solutions<
      //private Button insert = new Button("Insert Category", e -> insertCategory());
    */
 
-  //###########################USE CASE SQL QUERIES###################################################
- 
+  //###########################Pull Store Sales Report SQL QUERIES###################################################
+  Label salesReport = new Label("<p><font size=7 color=navy>Pull a Stores Sales report for a given store.</font></p>",ContentMode.HTML);
+  Label salesReport1 = new Label("<p><font size=4 color=black>Please enter your store ID to generate your transactions.</font></p>",ContentMode.HTML);
+
+
+  private TextField saleReportStoreID = new TextField("Store ID");
     //#############################INIT####################################################################
 
     protected void init(  VaadinRequest request) {
@@ -261,7 +268,7 @@ Label Title = new Label("<b><font size=32 color=navy>Team 9 Inventory Solutions<
     productOrderedGrid.setWidth("1000px"); productCategoriesGrid.setWidth("1000px"); customerGrid.setWidth("1000px");
    // productSoldGrid.setWidth("1000px");
 
-      VerticalLayout layout = new VerticalLayout(Title,CategoryLabel, categoryGrid, categoryName, subCategoryName, save,insert,CustomerLabel,customerGrid,
+      VerticalLayout layout = new VerticalLayout(Title,QueriesLabel,salesReport, salesReport1,saleReportStoreID, dbTableLabel,CategoryLabel, categoryGrid, categoryName, subCategoryName, save,insert,CustomerLabel,customerGrid,
     customerID,customerFirstName,customerLastName,billAddress,billCity,billState,billZip,shipAddress,shipCity,shipState,
     shipZip,phone,email,saveCustomerButton,employeeLabel,employeeGrid,employeeID,employeeFirstName,employeeLastName,
     employeeStreetAddress, employeeCity, employeeState, employeeZip, employeeStoreID,saveEmployeeButton,orderLabel, orderGrid,orderID,orderDate,orderShipDate,
