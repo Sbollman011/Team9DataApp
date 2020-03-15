@@ -16,7 +16,7 @@ public class VaadinUI extends UI {
 
 //############################TITLE################################################
 
-Label Title = new Label("<b><font size=25 color=navy>Team 9 Inventory Solutions</font></b>",ContentMode.HTML);
+Label Title = new Label("<b><font size=32 color=navy>Team 9 Inventory Solutions</font></b>",ContentMode.HTML);
 //#######################CATEGORY##########################################################
 
     @Autowired
@@ -26,7 +26,7 @@ Label Title = new Label("<b><font size=25 color=navy>Team 9 Inventory Solutions<
 
     private   Binder<Category> categoryBinder = new Binder<>(Category.class);
 
-    Label CategoryLabel = new Label("<p><font size=10 color=blue>Categories</font></p>",ContentMode.HTML);
+    Label CategoryLabel = new Label("<b><font size=10 color=black>Categories</font></b>",ContentMode.HTML);
 
 
     private   Grid<Category> categoryGrid = new Grid(Category.class);
@@ -45,7 +45,7 @@ Label Title = new Label("<b><font size=25 color=navy>Team 9 Inventory Solutions<
 
     private   Binder<Customer> customerBinder = new Binder<>(Customer.class);
 
-    Label CustomerLabel = new Label("<p><font size=10 color=blue>Customers</font></p>",ContentMode.HTML);
+    Label CustomerLabel = new Label("<b><font size=10 color=black>Customers</font></b>",ContentMode.HTML);
 
     private   Grid<Customer> customerGrid = new Grid(Customer.class);
     private   TextField customerID = new TextField("CustomerID");
@@ -71,7 +71,7 @@ Label Title = new Label("<b><font size=25 color=navy>Team 9 Inventory Solutions<
 
    private   Binder<Employee> employeeBinder = new Binder<>(Employee.class);
 
-   Label employeeLabel = new Label("<p><font size=10 color=blue>Employees</font></p>",ContentMode.HTML);
+   Label employeeLabel = new Label("<b><font size=10 color=black>Employees</font></b>",ContentMode.HTML);
 
    private   Grid<Employee> employeeGrid = new Grid(Employee.class);
    private   TextField employeeID = new TextField("Employee ID");
@@ -93,7 +93,7 @@ Label Title = new Label("<b><font size=25 color=navy>Team 9 Inventory Solutions<
 
    private   Binder<Order> orderBinder = new Binder<>(Order.class);
 
-   Label orderLabel = new Label("<p><font size=10 color=blue>Orders</font></p>",ContentMode.HTML);
+   Label orderLabel = new Label("<b><font size=10 color=black>Orders</font></b>",ContentMode.HTML);
 
    private   Grid<Order> orderGrid = new Grid(Order.class);
    private   TextField orderID = new TextField("Order ID");
@@ -113,7 +113,7 @@ Label Title = new Label("<b><font size=25 color=navy>Team 9 Inventory Solutions<
 
    private   Binder<Product> productBinder = new Binder<>(Product.class);
 
-   Label productLabel = new Label("<p><font size=10 color=blue>Products</font></p>",ContentMode.HTML);
+   Label productLabel = new Label("<b><font size=10 color=black>Products</font></b>",ContentMode.HTML);
 
    private   Grid<Product> productGrid = new Grid(Product.class);
    private   TextField productID = new TextField("Product ID");
@@ -133,7 +133,7 @@ Label Title = new Label("<b><font size=25 color=navy>Team 9 Inventory Solutions<
 
    private   Binder<Product_Ordered> productOrderedBinder = new Binder<>(Product_Ordered.class);
 
-   Label productOrderedLabel = new Label("<p><font size=10 color=blue>Products Ordered</font></p>",ContentMode.HTML);
+   Label productOrderedLabel = new Label("<b><font size=10 color=black>Products Ordered</font></b>",ContentMode.HTML);
 
    private   Grid<Product_Ordered> productOrderedGrid = new Grid(Product_Ordered.class);
    private   TextField poOrderedID = new TextField("Product Ordered ID");
@@ -153,7 +153,7 @@ Label Title = new Label("<b><font size=25 color=navy>Team 9 Inventory Solutions<
 
     private   Binder<productCategories> productCategoriesBinder = new Binder<>(productCategories.class);
 
-    Label productCategoriesLabel = new Label("<p><font size=10 color=blue>Product Categories</font></p>",ContentMode.HTML);
+    Label productCategoriesLabel = new Label("<b><font size=10 color=black>Product Categories</font></b>",ContentMode.HTML);
 
     private   Grid<productCategories> productCategoriesGrid = new Grid(productCategories.class);
     private   TextField productCategoriesProductID = new TextField("Product ID");
