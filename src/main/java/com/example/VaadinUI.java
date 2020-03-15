@@ -271,8 +271,8 @@ Label dbTableLabel = new Label("<b><font size=18 color=dodgerblue>Database Table
    productSoldGrid.addSelectionListener(e -> updateFormProductSold());
    //productSoldBinder.bindInstanceFields(this);
   
-    //###############Product Ordered Grid Creation#############################################
-   //updateGridProductOrdered();
+    //###############QuerySalesReport Grid Creation#############################################
+    updateGridSalesReport();
 
      querySalesReportGrid.setColumns("salesTransactionID","salesOrderDate","salesShipDate","salesTotal","salesCustomerID",
      "salesEmployeeID","salesStoreID");
@@ -591,11 +591,17 @@ private void saveOrder() {
       productSoldService.update(productSold);
       updateGridProductSold();
   }
-}
+
 
  /*private void insertCate() {
       categoryService.insert();
       updateGrid();
   }*/
 
-
+   //########################Sales Report FUNCTIONS########################################################
+   private void updateGridSalesReport() {
+    List<QuerySalesReport> salesReport = querySalesReportService.findAll();
+    querySalesReportGrid.setItems(salesReport);
+    setFormVisibleProductSold(false);
+   }
+}
