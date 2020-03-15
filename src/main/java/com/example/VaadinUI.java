@@ -2,29 +2,32 @@ package com.example;
 
 import com.vaadin.data.Binder;
 import com.vaadin.server.VaadinRequest;
+import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
-
-
-
-
+import org.w3c.dom.html.HTMLLabelElement;
 
 import java.util.*;
 
 @SpringUI
 public class VaadinUI extends UI {
 
+//############################TITLE################################################
+
+Label Title = new Label("<b><font size=25 color=navy>Team 9 Inventory Solutions</font></b>",ContentMode.HTML);
 //#######################CATEGORY##########################################################
 
     @Autowired
     private CategoryService categoryService;
-
+    
     private Category category;
 
     private Binder<Category> categoryBinder = new Binder<>(Category.class);
+
+    Label CategoryLabel = new Label("<p><font size=10 color=blue>Categories</font></p>",ContentMode.HTML);
+
 
     private Grid<Category> categoryGrid = new Grid(Category.class);
     private TextField categoryName = new TextField("Category Name");
@@ -41,6 +44,8 @@ public class VaadinUI extends UI {
     private Customer customer;
 
     private Binder<Customer> customerBinder = new Binder<>(Customer.class);
+
+    Label CustomerLabel = new Label("<p><font size=10 color=blue>Customers</font></p>",ContentMode.HTML);
 
     private Grid<Customer> customerGrid = new Grid(Customer.class);
     private TextField customerID = new TextField("CustomerID");
@@ -66,6 +71,8 @@ public class VaadinUI extends UI {
 
    private Binder<Employee> employeeBinder = new Binder<>(Employee.class);
 
+   Label employeeLabel = new Label("<p><font size=10 color=blue>Employees</font></p>",ContentMode.HTML);
+
    private Grid<Employee> employeeGrid = new Grid(Employee.class);
    private TextField employeeID = new TextField("Employee ID");
    private TextField employeeFirstName  = new TextField("First Name");
@@ -86,6 +93,8 @@ public class VaadinUI extends UI {
 
    private Binder<Order> orderBinder = new Binder<>(Order.class);
 
+   Label orderLabel = new Label("<p><font size=10 color=blue>Orders</font></p>",ContentMode.HTML);
+
    private Grid<Order> orderGrid = new Grid(Order.class);
    private TextField orderID = new TextField("Order ID");
    private TextField orderDate  = new TextField("Order Date");
@@ -103,6 +112,8 @@ public class VaadinUI extends UI {
    private Product product;
 
    private Binder<Product> productBinder = new Binder<>(Product.class);
+
+   Label productLabel = new Label("<p><font size=10 color=blue>Products</font></p>",ContentMode.HTML);
 
    private Grid<Product> productGrid = new Grid(Product.class);
    private TextField productID = new TextField("Product ID");
@@ -122,6 +133,8 @@ public class VaadinUI extends UI {
 
    private Binder<Product_Ordered> productOrderedBinder = new Binder<>(Product_Ordered.class);
 
+   Label productOrderedLabel = new Label("<p><font size=10 color=blue>Products Ordered</font></p>",ContentMode.HTML);
+
    private Grid<Product_Ordered> productOrderedGrid = new Grid(Product_Ordered.class);
    private TextField poOrderedID = new TextField("Product Ordered ID");
    private TextField productOrderedProductID = new TextField("Product Ordered Product ID");
@@ -140,6 +153,8 @@ public class VaadinUI extends UI {
 
     private Binder<productCategories> productCategoriesBinder = new Binder<>(productCategories.class);
 
+    Label productCategoriesLabel = new Label("<p><font size=10 color=blue>Product Categories</font></p>",ContentMode.HTML);
+
     private Grid<productCategories> productCategoriesGrid = new Grid(productCategories.class);
     private TextField productCategoriesProductID = new TextField("Product ID");
     private TextField productCategoriesName = new TextField("Product Category Name");
@@ -147,6 +162,9 @@ public class VaadinUI extends UI {
     private Button saveProductCategories = new Button("Save Changes", e -> saveProductCategories());
     //private Button insert = new Button("Insert Category", e -> insertCategory());
    
+
+  //###########################USE CASE SQL QUERIES###################################################
+ 
     //#############################INIT####################################################################
 
     protected void init(VaadinRequest request) {
@@ -155,6 +173,7 @@ public class VaadinUI extends UI {
 
     //###############CATEGORY GRID CREATION#############################################
         updateGrid();
+
 
     categoryGrid.setColumns("categoryName","subCategoryName");
     categoryGrid.addSelectionListener(e -> updateForm());
@@ -191,7 +210,7 @@ public class VaadinUI extends UI {
 
      //###############Product Grid Creation#############################################
      updateGridProduct();
-
+    
      productGrid.setColumns("productID","productName","productDescription","productPrice");
      productGrid.addSelectionListener(e -> updateFormProduct());
      productBinder.bindInstanceFields(this);
@@ -211,16 +230,19 @@ public class VaadinUI extends UI {
    productCategoriesBinder.bindInstanceFields(this);
   
 
-
      //#########################LAYOUT CREATION##############################################
-    VerticalLayout layout = new VerticalLayout(categoryGrid, categoryName, subCategoryName, save,insert,customerGrid,
-    customerID,customerFirstName,customerLastName,billAddress,billCity,billState,billZip,shipAddress,shipCity,shipState,
-    shipZip,phone,email,saveCustomerButton,employeeGrid,employeeID,employeeFirstName,employeeLastName,
-    employeeStreetAddress, employeeCity, employeeState, employeeZip, employeeStoreID,saveEmployeeButton,orderGrid,orderID,orderDate,orderShipDate,
-    orderTotal,orderVendorID,orderStoreID,saveOrderButton,productGrid,productID,productName,productDescription,productPrice,saveProduct, productOrderedGrid,
-    poOrderedID, productOrderedProductID, productOrderedQuantity,saveProductOrdered,productCategoriesGrid,productCategoriesProductID, productCategoriesName,productCategoriesSubName);
-    setContent(layout);
+    categoryGrid.setWidth("1000px"); employeeGrid.setWidth("1000px"); orderGrid.setWidth("1000px"); productGrid.setWidth("1000px");
+    productOrderedGrid.setWidth("1000px"); productCategoriesGrid.setWidth("1000px"); customerGrid.setWidth("1000px");
 
+    VerticalLayout layout = new VerticalLayout(Title,CategoryLabel, categoryGrid, categoryName, subCategoryName, save,insert,CustomerLabel,customerGrid,
+    customerID,customerFirstName,customerLastName,billAddress,billCity,billState,billZip,shipAddress,shipCity,shipState,
+    shipZip,phone,email,saveCustomerButton,employeeLabel,employeeGrid,employeeID,employeeFirstName,employeeLastName,
+    employeeStreetAddress, employeeCity, employeeState, employeeZip, employeeStoreID,saveEmployeeButton,orderLabel, orderGrid,orderID,orderDate,orderShipDate,
+    orderTotal,orderVendorID,orderStoreID,saveOrderButton,productLabel, productGrid,productID,productName,productDescription,productPrice,saveProduct, 
+    productOrderedLabel, productOrderedGrid,poOrderedID, productOrderedProductID, productOrderedQuantity,saveProductOrdered,productCategoriesLabel,
+    productCategoriesGrid,productCategoriesProductID, productCategoriesName,productCategoriesSubName);
+    setContent(layout);
+    
     }
 
     //########################CATEGORY FUNCTION########################################################
