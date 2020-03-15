@@ -213,7 +213,22 @@ Label dbTableLabel = new Label("<b><font size=18 color=dodgerblue>Database Table
 
   Label EmployeeSalesReport = new Label("<p><font size=7 color=navy>Pull Employee Sales records for all employees.</font></p>",ContentMode.HTML);
   
+//###########################Check Store Inventory SQL QUERIES###################################################
 
+ 
+private QueryCheckInventory queryCheckInventory;
+@Autowired
+private QueryCheckInventoryService queryCheckInventoryService;
+
+
+private   Binder<QueryCheckInventory> queryCheckInventoryBinder = new Binder<>(QueryCheckInventory.class);
+private Grid<QueryCheckInventory> queryCheckInventoryGrid = new Grid(QueryCheckInventory.class);
+
+Label checkInventoryLabel = new Label("<p><font size=7 color=navy>Check the Inventory of a store</font></p>",ContentMode.HTML);
+Label checkInventoryLabel1 = new Label("<p><font size=4 color=black>Please enter a valid store ID to generate an inventory report.</font></p>",ContentMode.HTML);
+
+private TextField inventoryReportID = new TextField("Store ID");
+private Button generateInventoryReport = new Button("Generate Report", e -> generateInventoryReport());
     //#############################INIT####################################################################
 
     protected void init(  VaadinRequest request) {
@@ -296,15 +311,22 @@ Label dbTableLabel = new Label("<b><font size=18 color=dodgerblue>Database Table
       updateGridEmployeeSalesReport();
 
       queryEmployeeSalesReportGrid.setColumns("employeeNo","noOfSales");
+
+      //###############QuerySalesReport Grid Creation#############################################
+
+     queryCheckInventoryGrid.setColumns("storeNo","productName","description","stock");
  
 
      //#########################LAYOUT CREATION##############################################
     categoryGrid.setWidth("1000px"); employeeGrid.setWidth("1000px"); orderGrid.setWidth("1000px"); productGrid.setWidth("1000px");
     productOrderedGrid.setWidth("1000px"); productCategoriesGrid.setWidth("1000px"); customerGrid.setWidth("1000px");
-   productSoldGrid.setWidth("1000px"); querySalesReportGrid.setWidth("1000px");
+   productSoldGrid.setWidth("1000px"); querySalesReportGrid.setWidth("1000px"); queryCheckInventoryGrid.setWidth("1000px");
+   queryEmployeeSalesReportGrid.setWidth("1000px");
 
       VerticalLayout layout = new VerticalLayout(Title,QueriesLabel,salesReport, salesReport1,saleReportStoreID,generateReport,
-    querySalesReportGrid,EmployeeSalesReport,queryEmployeeSalesReportGrid,dbTableLabel,CategoryLabel, categoryGrid, categoryName, subCategoryName, save,insert,CustomerLabel,customerGrid,
+    querySalesReportGrid,EmployeeSalesReport,queryEmployeeSalesReportGrid,checkInventoryLabel,checkInventoryLabel1,inventoryReportID,
+    generateInventoryReport,queryCheckInventoryGrid,
+    dbTableLabel,CategoryLabel, categoryGrid, categoryName, subCategoryName, save,insert,CustomerLabel,customerGrid,
     customerID,customerFirstName,customerLastName,billAddress,billCity,billState,billZip,shipAddress,shipCity,shipState,
     shipZip,phone,email,saveCustomerButton,employeeLabel,employeeGrid,employeeID,employeeFirstName,employeeLastName,
     employeeStreetAddress, employeeCity, employeeState, employeeZip, employeeStoreID,saveEmployeeButton,orderLabel, orderGrid,orderID,orderDate,orderShipDate,
@@ -636,6 +658,18 @@ private void saveOrder() {
     List<QueryEmployeeSalesReport> employeeSalesReport = queryEmployeeSalesReportService.findAll();
     queryEmployeeSalesReportGrid.setItems(employeeSalesReport);
     setFormVisibleProductSold(false);
+   }
+
+   //########################Check Inventory FUNCTIONS########################################################
+   private void updateGridCheckInventory(String store) {
+    List<QueryCheckInventory> checkInventory = queryCheckInventoryService.findAll(store);
+    queryCheckInventoryGrid.setItems(checkInventory);
+    setFormVisibleProductSold(false);
+   }
+
+   private void generateInventoryReport(){
+     String store =  inventoryReportID.getValue();
+       updateGridCheckInventory(store);
    }
 
 
