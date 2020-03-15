@@ -195,10 +195,25 @@ Label dbTableLabel = new Label("<b><font size=18 color=dodgerblue>Database Table
   private Grid<QuerySalesReport> querySalesReportGrid = new Grid(QuerySalesReport.class);
 
   Label salesReport = new Label("<p><font size=7 color=navy>Pull a Stores Sales report for a given store.</font></p>",ContentMode.HTML);
-  Label salesReport1 = new Label("<p><font size=4 color=black>Please enter your store ID to generate your transactions.</font></p>",ContentMode.HTML);
+  Label salesReport1 = new Label("<p><font size=4 color=black>Please enter your valid store ID to generate your transactions.</font></p>",ContentMode.HTML);
 
   private TextField saleReportStoreID = new TextField("Store ID");
   private Button generateReport = new Button("Generate Report", e -> generateSalesReport());
+
+  //###########################Pull Employee Sales Report SQL QUERIES###################################################
+
+ 
+  private QueryEmployeeSalesReport queryEmployeeSalesReport;
+  @Autowired
+  private QueryEmployeeSalesReportService queryEmployeeSalesReportService;
+  
+
+  private   Binder<QueryEmployeeSalesReport> queryEmployeeSalesReportBinder = new Binder<>(QueryEmployeeSalesReport.class);
+  private Grid<QueryEmployeeSalesReport> queryEmployeeSalesReportGrid = new Grid(QueryEmployeeSalesReport.class);
+
+  Label EmployeeSalesReport = new Label("<p><font size=7 color=navy>Pull Employee Sales records for all employees.</font></p>",ContentMode.HTML);
+  
+
     //#############################INIT####################################################################
 
     protected void init(  VaadinRequest request) {
@@ -272,19 +287,24 @@ Label dbTableLabel = new Label("<b><font size=18 color=dodgerblue>Database Table
    //productSoldBinder.bindInstanceFields(this);
   
     //###############QuerySalesReport Grid Creation#############################################
-    //updateGridSalesReport();
 
      querySalesReportGrid.setColumns("salesTransactionID","salesOrderDate","salesShipDate","salesTotal","salesCustomerID",
      "salesEmployeeID","salesStoreID");
-   // productOrderedGrid.addSelectionListener(e -> updateFormProductOrdered());
-   // productOrderedBinder.bindInstanceFields(this);
+
+      //###############QueryEmployeeSalesReport Grid Creation#############################################
+
+      updateGridEmployeeSalesReport();
+
+      queryEmployeeSalesReportGrid.setColumns("employeeNo","noOfSales");
+ 
+
      //#########################LAYOUT CREATION##############################################
     categoryGrid.setWidth("1000px"); employeeGrid.setWidth("1000px"); orderGrid.setWidth("1000px"); productGrid.setWidth("1000px");
     productOrderedGrid.setWidth("1000px"); productCategoriesGrid.setWidth("1000px"); customerGrid.setWidth("1000px");
    productSoldGrid.setWidth("1000px"); querySalesReportGrid.setWidth("1000px");
 
       VerticalLayout layout = new VerticalLayout(Title,QueriesLabel,salesReport, salesReport1,saleReportStoreID,generateReport,
-    querySalesReportGrid,dbTableLabel,CategoryLabel, categoryGrid, categoryName, subCategoryName, save,insert,CustomerLabel,customerGrid,
+    querySalesReportGrid,EmployeeSalesReport,queryEmployeeSalesReportGrid,dbTableLabel,CategoryLabel, categoryGrid, categoryName, subCategoryName, save,insert,CustomerLabel,customerGrid,
     customerID,customerFirstName,customerLastName,billAddress,billCity,billState,billZip,shipAddress,shipCity,shipState,
     shipZip,phone,email,saveCustomerButton,employeeLabel,employeeGrid,employeeID,employeeFirstName,employeeLastName,
     employeeStreetAddress, employeeCity, employeeState, employeeZip, employeeStoreID,saveEmployeeButton,orderLabel, orderGrid,orderID,orderDate,orderShipDate,
@@ -598,7 +618,7 @@ private void saveOrder() {
       updateGrid();
   }*/
 
-   //########################Sales Report FUNCTIONS########################################################
+   //########################Store Sales Report FUNCTIONS########################################################
    private void updateGridSalesReport(String store) {
     List<QuerySalesReport> salesReport = querySalesReportService.findAll(store);
     querySalesReportGrid.setItems(salesReport);
@@ -609,4 +629,21 @@ private void saveOrder() {
      String store =  saleReportStoreID.getValue();
        updateGridSalesReport(store);
    }
+
+
+ //########################Employee Sales Report FUNCTIONS########################################################
+ private void updateGridEmployeeSalesReport() {
+    List<QueryEmployeeSalesReport> employeeSalesReport = queryEmployeeSalesReportService.findAll();
+    queryEmployeeSalesReportGrid.setItems(employeeSalesReport);
+    setFormVisibleProductSold(false);
+   }
+
+
+
+
+
+
+
+
+
 }
