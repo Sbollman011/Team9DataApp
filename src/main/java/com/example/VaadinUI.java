@@ -176,11 +176,11 @@ Label dbTableLabel = new Label("<b><font size=18 color=dodgerblue>Database Table
      Label productSoldLabel = new Label("<b><font size=10 color=black>Products Sold</font></b>",ContentMode.HTML);
  
      private   Grid<ProductSold> productSoldGrid = new Grid(ProductSold.class);
-     private   TextField productSoldTranactionID = new TextField("Product Sold TransactionID");
-     private   TextField productSoldProductID = new TextField("Product Sold ProductID");
-     private   TextField productSoldQuantity = new TextField("Product Sold Quantity");
-     private   Button saveProductSold = new Button("Save Changes", e -> saveProductSold());
-     //private Button insert = new Button("Insert Category", e -> insertCategory());
+     private TextField productSoldID = new TextField("Product Sold ID");
+     private TextField productSoldTransactionID = new TextField("Product Sold Transaction ID");
+     private TextField productSoldQuantity = new TextField("Product Sold Quantity");
+     private Button saveProductSold = new Button("Save Changes"/*, e -> saveProductCategories()*/);
+         //private Button insert = new Button("Insert Category", e -> insertCategory());
    
 
   //###########################Pull Store Sales Report SQL QUERIES###################################################
@@ -332,8 +332,8 @@ private Button generateInventoryReport = new Button("Generate Report", e -> gene
     employeeStreetAddress, employeeCity, employeeState, employeeZip, employeeStoreID,saveEmployeeButton,orderLabel, orderGrid,orderID,orderDate,orderShipDate,
     orderTotal,orderVendorID,orderStoreID,saveOrderButton,productLabel, productGrid,productID,productName,productDescription,productPrice,saveProduct, 
     productOrderedLabel, productOrderedGrid,poOrderedID, productOrderedProductID, productOrderedQuantity,saveProductOrdered,productCategoriesLabel,
-    productCategoriesGrid,productCategoriesProductID, productCategoriesName,productCategoriesSubName,saveProductCategories,productSoldLabel, productSoldGrid,
-    productSoldTranactionID,productSoldProductID,productSoldQuantity,saveProductSold);
+    productCategoriesGrid,productCategoriesProductID, productCategoriesName,productCategoriesSubName,saveProductCategories,productSoldLabel,
+     productSoldGrid,productSoldTransactionID,productSoldID,productSoldQuantity,saveProductSold);
     setContent(layout);
     
     }
@@ -364,13 +364,17 @@ private Button generateInventoryReport = new Button("Generate Report", e -> gene
     }
 
     private void saveCategory() {
-        categoryService.update(category);
-        updateGrid();
+      String cName = categoryName.getValue();
+      String cSubName =  subCategoryName.getValue();
+      categoryService.update(cName,cSubName);
+      updateGrid();
     }
 
     private void insertCategory() {
-        categoryService.insert();
-        updateGrid();
+      String cName = categoryName.getValue();
+      String cSubName =  subCategoryName.getValue();
+      categoryService.insert(cName,cSubName);
+      updateGrid();
     }
 
 
@@ -622,11 +626,7 @@ private void saveOrder() {
   }
 
   private void setFormVisibleProductSold(  boolean visible) {
-      productSoldTranactionID.setVisible(visible);
-      productSoldProductID.setVisible(visible);
-      productSoldQuantity.setVisible(visible);
 
-      saveProductSold.setVisible(visible);
   }
 
   private void saveProductSold() {

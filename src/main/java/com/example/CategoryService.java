@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-
+//QUERY STATEMENTS
 
 import java.util.*;
 
@@ -19,13 +19,13 @@ public class CategoryService {
                 (rs, rowNum) -> new Category(rs.getString("CategoryName"), rs.getString("SubCategoryName")));
     }
 
-    public void update(Category category) {
-        jdbcTemplate.update("UPDATE Category SET SubCategoryName=? WHERE CategoryName=?",
-                category.getCategoryName(),category.getSubCategoryName());
+    public void update(String cName, String cSubName) {
+        jdbcTemplate.update("UPDATE Category SET CategoryName='"+cName+"', SubCategoryName='"+cSubName+"' WHERE CategoryName='"+cName+"'");
+                
     }
 
-    public List<Category> insert(){
-        return jdbcTemplate.query("INSERT INTO Category (CategoryName,SubCategoryName) VALUES (?,?) ",
-        (rs,rowNum)-> new Category(rs.getString("CategoryName"),rs.getString("SubCategoryName")));
+    public int insert(String cName, String cSubName){
+        return jdbcTemplate.update("INSERT INTO Category VALUES ('"+cName+"','"+cSubName+"')");
+       // (rs,rowNum)-> new Category(rs.getString("CategoryName"),rs.getString("SubCategoryName")));
     }
 }
