@@ -17,6 +17,7 @@ public class QuerySalesReport {
     public void storeSalesReport() {
         
     }
+}
     /*public void employeeSalesReport() {}
     public void checkInventory() {}
     public void checkOrders() {}
@@ -25,7 +26,7 @@ public class QuerySalesReport {
     public void checkCustomerHistory() {}
     public void checkSimiliarProducts() {}
     public void checkEmployeeRecords() {}*/
-}
+
 
     /*public void employeeSalesReport() {}
     public void checkInventory() {}

@@ -188,7 +188,7 @@ Label dbTableLabel = new Label("<b><font size=18 color=dodgerblue>Database Table
   Label salesReport = new Label("<p><font size=7 color=navy>Pull a Stores Sales report for a given store.</font></p>",ContentMode.HTML);
   Label salesReport1 = new Label("<p><font size=4 color=black>Please enter your store ID to generate your transactions.</font></p>",ContentMode.HTML);
 
-
+  private Button generateReport = new Button("Generate Report"/*, e -> insertCategory()*/);
   private TextField saleReportStoreID = new TextField("Store ID");
     //#############################INIT####################################################################
 
@@ -268,7 +268,7 @@ Label dbTableLabel = new Label("<b><font size=18 color=dodgerblue>Database Table
     productOrderedGrid.setWidth("1000px"); productCategoriesGrid.setWidth("1000px"); customerGrid.setWidth("1000px");
    // productSoldGrid.setWidth("1000px");
 
-      VerticalLayout layout = new VerticalLayout(Title,QueriesLabel,salesReport, salesReport1,saleReportStoreID, dbTableLabel,CategoryLabel, categoryGrid, categoryName, subCategoryName, save,insert,CustomerLabel,customerGrid,
+      VerticalLayout layout = new VerticalLayout(Title,QueriesLabel,salesReport, salesReport1,saleReportStoreID,generateReport, dbTableLabel,CategoryLabel, categoryGrid, categoryName, subCategoryName, save,insert,CustomerLabel,customerGrid,
     customerID,customerFirstName,customerLastName,billAddress,billCity,billState,billZip,shipAddress,shipCity,shipState,
     shipZip,phone,email,saveCustomerButton,employeeLabel,employeeGrid,employeeID,employeeFirstName,employeeLastName,
     employeeStreetAddress, employeeCity, employeeState, employeeZip, employeeStoreID,saveEmployeeButton,orderLabel, orderGrid,orderID,orderDate,orderShipDate,
