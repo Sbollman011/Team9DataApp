@@ -1,7 +1,7 @@
 package com.example;
 
 public class ProductSold {
-/*
+
     
     String soldTransactionID,soldProductID,soldQuantity;
 
@@ -38,5 +38,5 @@ public class ProductSold {
 
 
 
-*/
+
 }

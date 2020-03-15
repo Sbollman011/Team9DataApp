@@ -148,8 +148,6 @@ Label dbTableLabel = new Label("<b><font size=18 color=dodgerblue>Database Table
     //#######################Product_Order ##########################################################
 
     @Autowired
-
-    
     private productCategoriesService productcategoriesService;
     private productCategories productcategories;
     
@@ -165,16 +163,17 @@ Label dbTableLabel = new Label("<b><font size=18 color=dodgerblue>Database Table
     private   Button saveProductCategories = new Button("Save Changes", e -> saveProductCategories());
     //private Button insert = new Button("Insert Category", e -> insertCategory());
 
-     /*#######################Product_SOLD##########################################################
+     //#######################Product_SOLD##########################################################
 
-     @Autowired
+ 
      private ProductSold productSold;
+     @Autowired
      private ProductSoldService productSoldService;
      
  
      private   Binder<ProductSold> productSoldBinder = new Binder<>(ProductSold.class);
  
-     Label productSoldLabel = new Label("<p><font size=10 color=blue>Products Sold</font></p>",ContentMode.HTML);
+     Label productSoldLabel = new Label("<b><font size=10 color=black>Products Sold</font></b>",ContentMode.HTML);
  
      private   Grid<ProductSold> productSoldGrid = new Grid(ProductSold.class);
      private   TextField productSoldTranactionID = new TextField("Product Sold TransactionID");
@@ -182,9 +181,19 @@ Label dbTableLabel = new Label("<b><font size=18 color=dodgerblue>Database Table
      private   TextField productSoldQuantity = new TextField("Product Sold Quantity");
      private   Button saveProductSold = new Button("Save Changes", e -> saveProductSold());
      //private Button insert = new Button("Insert Category", e -> insertCategory());
-   */
+   
 
   //###########################Pull Store Sales Report SQL QUERIES###################################################
+
+ 
+  private QuerySalesReport querySalesReport;
+  @Autowired
+  private QuerySalesReportService querySalesReportService;
+  
+
+  private   Binder<QuerySalesReport> querySalesReportBinder = new Binder<>(QuerySalesReport.class);
+  private Grid<QuerySalesReport> querySalesReportGrid = new Grid(QuerySalesReport.class);
+
   Label salesReport = new Label("<p><font size=7 color=navy>Pull a Stores Sales report for a given store.</font></p>",ContentMode.HTML);
   Label salesReport1 = new Label("<p><font size=4 color=black>Please enter your store ID to generate your transactions.</font></p>",ContentMode.HTML);
 
@@ -255,27 +264,34 @@ Label dbTableLabel = new Label("<b><font size=18 color=dodgerblue>Database Table
    productCategoriesBinder.bindInstanceFields(this);
 
 
-   /*###############Product Sold Grid Creation#############################################
-   updateGridProductOrdered();
+   //###############Product Sold Grid Creation#############################################
+   updateGridProductSold();
 
    productSoldGrid.setColumns("soldTransactionID","soldProductID","soldQuantity");
    productSoldGrid.addSelectionListener(e -> updateFormProductSold());
-   productSoldBinder.bindInstanceFields(this);
-  */
+   //productSoldBinder.bindInstanceFields(this);
+  
+    //###############Product Ordered Grid Creation#############################################
+   //updateGridProductOrdered();
 
+     querySalesReportGrid.setColumns("salesTransactionID","salesOrderDate","salesShipDate","salesTotal","salesCustomerID",
+     "salesEmployeeID","salesStoreID");
+   // productOrderedGrid.addSelectionListener(e -> updateFormProductOrdered());
+   // productOrderedBinder.bindInstanceFields(this);
      //#########################LAYOUT CREATION##############################################
     categoryGrid.setWidth("1000px"); employeeGrid.setWidth("1000px"); orderGrid.setWidth("1000px"); productGrid.setWidth("1000px");
     productOrderedGrid.setWidth("1000px"); productCategoriesGrid.setWidth("1000px"); customerGrid.setWidth("1000px");
-   // productSoldGrid.setWidth("1000px");
+   productSoldGrid.setWidth("1000px"); querySalesReportGrid.setWidth("1000px");
 
-      VerticalLayout layout = new VerticalLayout(Title,QueriesLabel,salesReport, salesReport1,saleReportStoreID,generateReport, dbTableLabel,CategoryLabel, categoryGrid, categoryName, subCategoryName, save,insert,CustomerLabel,customerGrid,
+      VerticalLayout layout = new VerticalLayout(Title,QueriesLabel,salesReport, salesReport1,saleReportStoreID,generateReport,
+    querySalesReportGrid,dbTableLabel,CategoryLabel, categoryGrid, categoryName, subCategoryName, save,insert,CustomerLabel,customerGrid,
     customerID,customerFirstName,customerLastName,billAddress,billCity,billState,billZip,shipAddress,shipCity,shipState,
     shipZip,phone,email,saveCustomerButton,employeeLabel,employeeGrid,employeeID,employeeFirstName,employeeLastName,
     employeeStreetAddress, employeeCity, employeeState, employeeZip, employeeStoreID,saveEmployeeButton,orderLabel, orderGrid,orderID,orderDate,orderShipDate,
     orderTotal,orderVendorID,orderStoreID,saveOrderButton,productLabel, productGrid,productID,productName,productDescription,productPrice,saveProduct, 
     productOrderedLabel, productOrderedGrid,poOrderedID, productOrderedProductID, productOrderedQuantity,saveProductOrdered,productCategoriesLabel,
-    productCategoriesGrid,productCategoriesProductID, productCategoriesName,productCategoriesSubName,saveProductCategories/*,productSoldGrid,
-    productSoldTranactionID,productSoldProductID,productSoldQuantity,saveProductSold*/);
+    productCategoriesGrid,productCategoriesProductID, productCategoriesName,productCategoriesSubName,saveProductCategories,productSoldLabel, productSoldGrid,
+    productSoldTranactionID,productSoldProductID,productSoldQuantity,saveProductSold);
     setContent(layout);
     
     }
@@ -536,7 +552,7 @@ private void saveOrder() {
       productcategoriesService.update(productcategories);
       updateGridProductCategories();
   }
-}
+
 
 
   /*private void insertCate() {
@@ -545,7 +561,7 @@ private void saveOrder() {
   }*/
 
    //########################Product SOLD FUNCTIONS########################################################
-/*
+
    private void updateGridProductSold() {
       List<ProductSold> productsSold = productSoldService.findAll();
       productSoldGrid.setItems(productsSold);
@@ -577,7 +593,7 @@ private void saveOrder() {
   }
 }
 
-  /*private void insertCate() {
+ /*private void insertCate() {
       categoryService.insert();
       updateGrid();
   }*/

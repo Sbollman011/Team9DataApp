@@ -1,4 +1,4 @@
-/*package com.example;
+package com.example;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,11 +16,11 @@ public class ProductSoldService {
 
     public List<ProductSold> findAll() {
         return jdbcTemplate.query("SELECT * FROM product_sold",
-                (rs, rowNum) -> new ProductSold(rs.getString("soldTransactionID"), rs.getString("SOLD_ProductID"), rs.getString("soldQuantity")));
+                (rs, rowNum) -> new ProductSold(rs.getString("SOLD_TransactionID"), rs.getString("SOLD_ProductID"), rs.getString("Quantity")));
     }
 
     public void update(ProductSold productSold) {
-        jdbcTemplate.update("UPDATE Product_Ordered SET PO_OrderID, PO_ProductID,Quantity WHERE PO_OrderID=?",
+        jdbcTemplate.update("UPDATE product_sold SET SOLD_TransactionID, SOLD_ProductID,Quantity WHERE SOLD_TransactionID=?",
                 productSold.getSoldTransactionID(), productSold.getSoldProductID(), productSold.getSoldQuantity());
     }
 
@@ -28,4 +28,4 @@ public class ProductSoldService {
         return jdbcTemplate.query("INSERT INTO Category (CategoryName,SubCategoryName) VALUES (?,?) ",
         (rs,rowNum)-> new Category(rs.getString("CategoryName"),rs.getString("SubCategoryName")));
     }*/
-//}
+}
