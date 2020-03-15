@@ -24,16 +24,16 @@ Label Title = new Label("<b><font size=25 color=navy>Team 9 Inventory Solutions<
     
     private Category category;
 
-    private Binder<Category> categoryBinder = new Binder<>(Category.class);
+    private   Binder<Category> categoryBinder = new Binder<>(Category.class);
 
     Label CategoryLabel = new Label("<p><font size=10 color=blue>Categories</font></p>",ContentMode.HTML);
 
 
-    private Grid<Category> categoryGrid = new Grid(Category.class);
-    private TextField categoryName = new TextField("Category Name");
-    private TextField subCategoryName = new TextField("SubCategory Name");
-    private Button save = new Button("Save Changes", e -> saveCategory());
-    private Button insert = new Button("Insert Category", e -> insertCategory());
+    private   Grid<Category> categoryGrid = new Grid(Category.class);
+    private   TextField categoryName = new TextField("Category Name");
+    private   TextField subCategoryName = new TextField("SubCategory Name");
+    private   Button save = new Button("Save Changes", e -> saveCategory());
+    private   Button insert = new Button("Insert Category", e -> insertCategory());
 
 
     //#############CUSTOMER##############################################################################################
@@ -43,25 +43,25 @@ Label Title = new Label("<b><font size=25 color=navy>Team 9 Inventory Solutions<
 
     private Customer customer;
 
-    private Binder<Customer> customerBinder = new Binder<>(Customer.class);
+    private   Binder<Customer> customerBinder = new Binder<>(Customer.class);
 
     Label CustomerLabel = new Label("<p><font size=10 color=blue>Customers</font></p>",ContentMode.HTML);
 
-    private Grid<Customer> customerGrid = new Grid(Customer.class);
-    private TextField customerID = new TextField("CustomerID");
-    private TextField customerFirstName  = new TextField("First Name");
-    private TextField customerLastName = new TextField("Last Name");
-    private TextField billAddress = new TextField("Bill Address");
-    private TextField billCity = new TextField("Bill City");
-    private TextField billState = new TextField("Bill State");
-    private TextField billZip = new TextField("Bill Zip");
-    private TextField shipAddress = new TextField("Ship Address");
-    private TextField shipCity = new TextField("Ship City");
-    private TextField shipState = new TextField("Ship State");
-    private TextField shipZip = new TextField("Ship Zip");
-    private TextField phone = new TextField("Phone");
-    private TextField email = new TextField("Email");
-   private Button saveCustomerButton = new Button("Save Changes", e -> saveCustomer());
+    private   Grid<Customer> customerGrid = new Grid(Customer.class);
+    private   TextField customerID = new TextField("CustomerID");
+    private   TextField customerFirstName  = new TextField("First Name");
+    private   TextField customerLastName = new TextField("Last Name");
+    private   TextField billAddress = new TextField("Bill Address");
+    private   TextField billCity = new TextField("Bill City");
+    private   TextField billState = new TextField("Bill State");
+    private   TextField billZip = new TextField("Bill Zip");
+    private   TextField shipAddress = new TextField("Ship Address");
+    private   TextField shipCity = new TextField("Ship City");
+    private   TextField shipState = new TextField("Ship State");
+    private   TextField shipZip = new TextField("Ship Zip");
+    private   TextField phone = new TextField("Phone");
+    private   TextField email = new TextField("Email");
+   private   Button saveCustomerButton = new Button("Save Changes", e -> saveCustomer());
 
    //##########################  EMPLOYEE  ############################################################
    @Autowired
@@ -69,20 +69,20 @@ Label Title = new Label("<b><font size=25 color=navy>Team 9 Inventory Solutions<
 
    private Employee employee;
 
-   private Binder<Employee> employeeBinder = new Binder<>(Employee.class);
+   private   Binder<Employee> employeeBinder = new Binder<>(Employee.class);
 
    Label employeeLabel = new Label("<p><font size=10 color=blue>Employees</font></p>",ContentMode.HTML);
 
-   private Grid<Employee> employeeGrid = new Grid(Employee.class);
-   private TextField employeeID = new TextField("Employee ID");
-   private TextField employeeFirstName  = new TextField("First Name");
-   private TextField employeeLastName = new TextField("Last Name");
-   private TextField employeeStreetAddress = new TextField("Street Address");
-   private TextField employeeCity = new TextField("City");
-   private TextField employeeState = new TextField("State");
-   private TextField employeeZip = new TextField("Zip");
-   private TextField employeeStoreID = new TextField("Employee Store ID");
-   private Button saveEmployeeButton = new Button("Save Changes", e -> saveEmployee());
+   private   Grid<Employee> employeeGrid = new Grid(Employee.class);
+   private   TextField employeeID = new TextField("Employee ID");
+   private   TextField employeeFirstName  = new TextField("First Name");
+   private   TextField employeeLastName = new TextField("Last Name");
+   private   TextField employeeStreetAddress = new TextField("Street Address");
+   private   TextField employeeCity = new TextField("City");
+   private   TextField employeeState = new TextField("State");
+   private   TextField employeeZip = new TextField("Zip");
+   private   TextField employeeStoreID = new TextField("Employee Store ID");
+   private   Button saveEmployeeButton = new Button("Save Changes", e -> saveEmployee());
 
 
  //##########################  ORDER  ############################################################
@@ -91,18 +91,18 @@ Label Title = new Label("<b><font size=25 color=navy>Team 9 Inventory Solutions<
 
    private Order order;
 
-   private Binder<Order> orderBinder = new Binder<>(Order.class);
+   private   Binder<Order> orderBinder = new Binder<>(Order.class);
 
    Label orderLabel = new Label("<p><font size=10 color=blue>Orders</font></p>",ContentMode.HTML);
 
-   private Grid<Order> orderGrid = new Grid(Order.class);
-   private TextField orderID = new TextField("Order ID");
-   private TextField orderDate  = new TextField("Order Date");
-   private TextField orderShipDate = new TextField("Order Ship Date");
-   private TextField orderTotal = new TextField("Order Total");
-   private TextField orderVendorID = new TextField("Order Vendor ID");
-   private TextField orderStoreID = new TextField("Order Store ID");
-   private Button saveOrderButton = new Button("Save Changes", e -> saveOrder());
+   private   Grid<Order> orderGrid = new Grid(Order.class);
+   private   TextField orderID = new TextField("Order ID");
+   private   TextField orderDate  = new TextField("Order Date");
+   private   TextField orderShipDate = new TextField("Order Ship Date");
+   private   TextField orderTotal = new TextField("Order Total");
+   private   TextField orderVendorID = new TextField("Order Vendor ID");
+   private   TextField orderStoreID = new TextField("Order Store ID");
+   private   Button saveOrderButton = new Button("Save Changes", e -> saveOrder());
 
    //#######################PRODUCT##########################################################
 
@@ -111,16 +111,16 @@ Label Title = new Label("<b><font size=25 color=navy>Team 9 Inventory Solutions<
 
    private Product product;
 
-   private Binder<Product> productBinder = new Binder<>(Product.class);
+   private   Binder<Product> productBinder = new Binder<>(Product.class);
 
    Label productLabel = new Label("<p><font size=10 color=blue>Products</font></p>",ContentMode.HTML);
 
-   private Grid<Product> productGrid = new Grid(Product.class);
-   private TextField productID = new TextField("Product ID");
-   private TextField productName = new TextField("Product Name");
-   private TextField productDescription = new TextField("Product Description");
-   private TextField productPrice = new TextField("Product Price");
-   private Button saveProduct = new Button("Save Changes", e -> saveProduct());
+   private   Grid<Product> productGrid = new Grid(Product.class);
+   private   TextField productID = new TextField("Product ID");
+   private   TextField productName = new TextField("Product Name");
+   private   TextField productDescription = new TextField("Product Description");
+   private   TextField productPrice = new TextField("Product Price");
+   private   Button saveProduct = new Button("Save Changes", e -> saveProduct());
    //private Button insertProduct = new Button("Insert Category", e -> insertCategory());
 
 
@@ -131,15 +131,15 @@ Label Title = new Label("<b><font size=25 color=navy>Team 9 Inventory Solutions<
 
    private Product_Ordered product_ordered;
 
-   private Binder<Product_Ordered> productOrderedBinder = new Binder<>(Product_Ordered.class);
+   private   Binder<Product_Ordered> productOrderedBinder = new Binder<>(Product_Ordered.class);
 
    Label productOrderedLabel = new Label("<p><font size=10 color=blue>Products Ordered</font></p>",ContentMode.HTML);
 
-   private Grid<Product_Ordered> productOrderedGrid = new Grid(Product_Ordered.class);
-   private TextField poOrderedID = new TextField("Product Ordered ID");
-   private TextField productOrderedProductID = new TextField("Product Ordered Product ID");
-   private TextField productOrderedQuantity = new TextField("Product Ordered Quantity");
-   private Button saveProductOrdered = new Button("Save Changes", e -> saveProductOrdered());
+   private   Grid<Product_Ordered> productOrderedGrid = new Grid(Product_Ordered.class);
+   private   TextField poOrderedID = new TextField("Product Ordered ID");
+   private   TextField productOrderedProductID = new TextField("Product Ordered Product ID");
+   private   TextField productOrderedQuantity = new TextField("Product Ordered Quantity");
+   private   Button saveProductOrdered = new Button("Save Changes", e -> saveProductOrdered());
    //private Button insert = new Button("Insert Category", e -> insertCategory());
 
     //#######################Product_Order ##########################################################
@@ -151,23 +151,41 @@ Label Title = new Label("<b><font size=25 color=navy>Team 9 Inventory Solutions<
     private productCategories productcategories;
     
 
-    private Binder<productCategories> productCategoriesBinder = new Binder<>(productCategories.class);
+    private   Binder<productCategories> productCategoriesBinder = new Binder<>(productCategories.class);
 
     Label productCategoriesLabel = new Label("<p><font size=10 color=blue>Product Categories</font></p>",ContentMode.HTML);
 
-    private Grid<productCategories> productCategoriesGrid = new Grid(productCategories.class);
-    private TextField productCategoriesProductID = new TextField("Product ID");
-    private TextField productCategoriesName = new TextField("Product Category Name");
-    private TextField productCategoriesSubName = new TextField("Product Ordered Quantity");
-    private Button saveProductCategories = new Button("Save Changes", e -> saveProductCategories());
+    private   Grid<productCategories> productCategoriesGrid = new Grid(productCategories.class);
+    private   TextField productCategoriesProductID = new TextField("Product ID");
+    private   TextField productCategoriesName = new TextField("Product Category Name");
+    private   TextField productCategoriesSubName = new TextField("Product Ordered Quantity");
+    private   Button saveProductCategories = new Button("Save Changes", e -> saveProductCategories());
     //private Button insert = new Button("Insert Category", e -> insertCategory());
-   
+
+     /*#######################Product_SOLD##########################################################
+
+     @Autowired
+     private ProductSold productSold;
+     private ProductSoldService productSoldService;
+     
+ 
+     private   Binder<ProductSold> productSoldBinder = new Binder<>(ProductSold.class);
+ 
+     Label productSoldLabel = new Label("<p><font size=10 color=blue>Products Sold</font></p>",ContentMode.HTML);
+ 
+     private   Grid<ProductSold> productSoldGrid = new Grid(ProductSold.class);
+     private   TextField productSoldTranactionID = new TextField("Product Sold TransactionID");
+     private   TextField productSoldProductID = new TextField("Product Sold ProductID");
+     private   TextField productSoldQuantity = new TextField("Product Sold Quantity");
+     private   Button saveProductSold = new Button("Save Changes", e -> saveProductSold());
+     //private Button insert = new Button("Insert Category", e -> insertCategory());
+   */
 
   //###########################USE CASE SQL QUERIES###################################################
  
     //#############################INIT####################################################################
 
-    protected void init(VaadinRequest request) {
+    protected void init(  VaadinRequest request) {
 
     
 
@@ -228,19 +246,29 @@ Label Title = new Label("<b><font size=25 color=navy>Team 9 Inventory Solutions<
    //productCategoriesGrid.setColumns("productCategoriesProductID","productCategoryName","ProductCategorySubName");
    productCategoriesGrid.addSelectionListener(e -> updateFormProductCategories());
    productCategoriesBinder.bindInstanceFields(this);
-  
+
+
+   /*###############Product Sold Grid Creation#############################################
+   updateGridProductOrdered();
+
+   productSoldGrid.setColumns("soldTransactionID","soldProductID","soldQuantity");
+   productSoldGrid.addSelectionListener(e -> updateFormProductSold());
+   productSoldBinder.bindInstanceFields(this);
+  */
 
      //#########################LAYOUT CREATION##############################################
     categoryGrid.setWidth("1000px"); employeeGrid.setWidth("1000px"); orderGrid.setWidth("1000px"); productGrid.setWidth("1000px");
     productOrderedGrid.setWidth("1000px"); productCategoriesGrid.setWidth("1000px"); customerGrid.setWidth("1000px");
+   // productSoldGrid.setWidth("1000px");
 
-    VerticalLayout layout = new VerticalLayout(Title,CategoryLabel, categoryGrid, categoryName, subCategoryName, save,insert,CustomerLabel,customerGrid,
+      VerticalLayout layout = new VerticalLayout(Title,CategoryLabel, categoryGrid, categoryName, subCategoryName, save,insert,CustomerLabel,customerGrid,
     customerID,customerFirstName,customerLastName,billAddress,billCity,billState,billZip,shipAddress,shipCity,shipState,
     shipZip,phone,email,saveCustomerButton,employeeLabel,employeeGrid,employeeID,employeeFirstName,employeeLastName,
     employeeStreetAddress, employeeCity, employeeState, employeeZip, employeeStoreID,saveEmployeeButton,orderLabel, orderGrid,orderID,orderDate,orderShipDate,
     orderTotal,orderVendorID,orderStoreID,saveOrderButton,productLabel, productGrid,productID,productName,productDescription,productPrice,saveProduct, 
     productOrderedLabel, productOrderedGrid,poOrderedID, productOrderedProductID, productOrderedQuantity,saveProductOrdered,productCategoriesLabel,
-    productCategoriesGrid,productCategoriesProductID, productCategoriesName,productCategoriesSubName);
+    productCategoriesGrid,productCategoriesProductID, productCategoriesName,productCategoriesSubName,saveProductCategories/*,productSoldGrid,
+    productSoldTranactionID,productSoldProductID,productSoldQuantity,saveProductSold*/);
     setContent(layout);
     
     }
@@ -248,7 +276,7 @@ Label Title = new Label("<b><font size=25 color=navy>Team 9 Inventory Solutions<
     //########################CATEGORY FUNCTION########################################################
 
     private void updateGrid() {
-      List<Category> categories = categoryService.findAll();
+        List<Category> categories = categoryService.findAll();
         categoryGrid.setItems(categories);
         setFormVisible(false);
     }
@@ -264,7 +292,7 @@ Label Title = new Label("<b><font size=25 color=navy>Team 9 Inventory Solutions<
         }
     }
 
-    private void setFormVisible(boolean visible) {
+    private void setFormVisible(  boolean visible) {
         categoryName.setVisible(visible);
         subCategoryName.setVisible(visible);
         save.setVisible(visible);
@@ -285,7 +313,7 @@ Label Title = new Label("<b><font size=25 color=navy>Team 9 Inventory Solutions<
 
     //######################Customer FUNCTIONS#######################################################################################################
     private void updateGridCustomer() {
-        List<Customer> customers = customerService.findAll();
+          List<Customer> customers = customerService.findAll();
           customerGrid.setItems(customers);
           setFormVisibleCustomer(false);
       }
@@ -301,7 +329,7 @@ Label Title = new Label("<b><font size=25 color=navy>Team 9 Inventory Solutions<
         }
     }
 
-    private void setFormVisibleCustomer(boolean visible) {
+    private void setFormVisibleCustomer(  boolean visible) {
         customerID.setVisible(visible);
         customerFirstName.setVisible(visible);
         customerLastName.setVisible(visible);
@@ -328,7 +356,7 @@ Label Title = new Label("<b><font size=25 color=navy>Team 9 Inventory Solutions<
 
  //######################Employee FUNCTIONS#######################################################################################################
  private void updateGridEmployee() {
-    List<Employee> employees = employeeService.findAll();
+      List<Employee> employees = employeeService.findAll();
       employeeGrid.setItems(employees);
       setFormVisibleEmployee(false);
   }
@@ -344,7 +372,7 @@ private void updateFormEmployee() {
     }
 }
 
-private void setFormVisibleEmployee(boolean visible) {
+private void setFormVisibleEmployee(  boolean visible) {
     employeeID.setVisible(visible);
     employeeFirstName.setVisible(visible);
     employeeLastName.setVisible(visible);
@@ -365,7 +393,7 @@ private void saveEmployee() {
 
  //######################Order FUNCTIONS#######################################################################################################
  private void updateGridOrder() {
-    List<Order> orders = orderService.findAll();
+      List<Order> orders = orderService.findAll();
       orderGrid.setItems(orders);
       setFormVisibleOrder(false);
   }
@@ -381,7 +409,7 @@ private void updateFormOrder() {
     }
 }
 
-private void setFormVisibleOrder(boolean visible) {
+private void setFormVisibleOrder(  boolean visible) {
     orderID.setVisible(visible);
     orderDate.setVisible(visible);
     orderShipDate.setVisible(visible);
@@ -398,7 +426,7 @@ private void saveOrder() {
    //########################PRODUCT FUNCTION########################################################
 
    private void updateGridProduct() {
-    List<Product> products = productService.findAll();
+      List<Product> products = productService.findAll();
       productGrid.setItems(products);
       setFormVisibleProduct(false);
   }
@@ -414,7 +442,7 @@ private void saveOrder() {
       }
   }
 
-  private void setFormVisibleProduct(boolean visible) {
+  private void setFormVisibleProduct(  boolean visible) {
       productID.setVisible(visible);
       productName.setVisible(visible);
       productDescription.setVisible(visible);
@@ -435,7 +463,7 @@ private void saveOrder() {
    //########################Product Ordered FUNCTIONS########################################################
 
    private void updateGridProductOrdered() {
-    List<Product_Ordered> productsOrdered = productOrderedService.findAll();
+      List<Product_Ordered> productsOrdered = productOrderedService.findAll();
       productOrderedGrid.setItems(productsOrdered);
       setFormVisibleProductOrdered(false);
   }
@@ -451,7 +479,7 @@ private void saveOrder() {
       }
   }
 
-  private void setFormVisibleProductOrdered(boolean visible) {
+  private void setFormVisibleProductOrdered(  boolean visible) {
       poOrderedID.setVisible(visible);
       productOrderedProductID.setVisible(visible);
       productOrderedQuantity.setVisible(visible);
@@ -470,10 +498,10 @@ private void saveOrder() {
       updateGrid();
   }*/
 
-   //########################Product Ordered FUNCTIONS########################################################
+   //########################Product Categories FUNCTIONS########################################################
 
    private void updateGridProductCategories() {
-    List<productCategories> ProductCategories = productcategoriesService.findAll();
+      List<productCategories> ProductCategories = productcategoriesService.findAll();
       productCategoriesGrid.setItems(ProductCategories);
       setFormVisibleProductOrdered(false);
   }
@@ -489,7 +517,7 @@ private void saveOrder() {
       }
   }
 
-  private void setFormVisibleProductCategories(boolean visible) {
+  private void setFormVisibleProductCategories(  boolean visible) {
       productCategoriesProductID.setVisible(visible);
       productCategoriesName.setVisible(visible);
       productCategoriesSubName.setVisible(visible);
@@ -500,6 +528,45 @@ private void saveOrder() {
   private void saveProductCategories() {
       productcategoriesService.update(productcategories);
       updateGridProductCategories();
+  }
+}
+
+
+  /*private void insertCate() {
+      categoryService.insert();
+      updateGrid();
+  }*/
+
+   //########################Product SOLD FUNCTIONS########################################################
+/*
+   private void updateGridProductSold() {
+      List<ProductSold> productsSold = productSoldService.findAll();
+      productSoldGrid.setItems(productsSold);
+      setFormVisibleProductSold(false);
+  }
+
+
+  private void updateFormProductSold() {
+      if (productSoldGrid.asSingleSelect().isEmpty()) {
+          setFormVisibleProductSold(false);
+      } else {
+          productSold = productSoldGrid.asSingleSelect().getValue();
+          productSoldBinder.setBean(productSold);
+          setFormVisibleProductOrdered(true);
+      }
+  }
+
+  private void setFormVisibleProductSold(  boolean visible) {
+      productSoldTranactionID.setVisible(visible);
+      productSoldProductID.setVisible(visible);
+      productSoldQuantity.setVisible(visible);
+
+      saveProductSold.setVisible(visible);
+  }
+
+  private void saveProductSold() {
+      productSoldService.update(productSold);
+      updateGridProductSold();
   }
 }
 

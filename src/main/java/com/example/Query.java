@@ -11,10 +11,12 @@ import java.util.*;
 @Component
 public class Query {
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+    //@Autowired
+    //private JdbcTemplate jdbcTemplate;
 
-    public void storeSalesReport() {}
+    public void storeSalesReport() {
+        
+    }
     public void employeeSalesReport() {}
     public void checkInventory() {}
     public void checkOrders() {}
