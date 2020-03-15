@@ -197,8 +197,8 @@ Label dbTableLabel = new Label("<b><font size=18 color=dodgerblue>Database Table
   Label salesReport = new Label("<p><font size=7 color=navy>Pull a Stores Sales report for a given store.</font></p>",ContentMode.HTML);
   Label salesReport1 = new Label("<p><font size=4 color=black>Please enter your store ID to generate your transactions.</font></p>",ContentMode.HTML);
 
-  private Button generateReport = new Button("Generate Report"/*, e -> insertCategory()*/);
   private TextField saleReportStoreID = new TextField("Store ID");
+  private Button generateReport = new Button("Generate Report", e -> generateSalesReport());
     //#############################INIT####################################################################
 
     protected void init(  VaadinRequest request) {
@@ -272,7 +272,7 @@ Label dbTableLabel = new Label("<b><font size=18 color=dodgerblue>Database Table
    //productSoldBinder.bindInstanceFields(this);
   
     //###############QuerySalesReport Grid Creation#############################################
-    updateGridSalesReport();
+    //updateGridSalesReport();
 
      querySalesReportGrid.setColumns("salesTransactionID","salesOrderDate","salesShipDate","salesTotal","salesCustomerID",
      "salesEmployeeID","salesStoreID");
@@ -599,9 +599,14 @@ private void saveOrder() {
   }*/
 
    //########################Sales Report FUNCTIONS########################################################
-   private void updateGridSalesReport() {
-    List<QuerySalesReport> salesReport = querySalesReportService.findAll();
+   private void updateGridSalesReport(String store) {
+    List<QuerySalesReport> salesReport = querySalesReportService.findAll(store);
     querySalesReportGrid.setItems(salesReport);
     setFormVisibleProductSold(false);
+   }
+
+   private void generateSalesReport(){
+     String store =  saleReportStoreID.getValue();
+       updateGridSalesReport(store);
    }
 }
