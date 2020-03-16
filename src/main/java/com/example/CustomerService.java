@@ -25,8 +25,8 @@ public class CustomerService {
 
     public void update(Customer customer) {
         jdbcTemplate.update("UPDATE Customer SET FirstName=?, LastName=?, BillAddress=?, BillCity=?, BillState=?, BillZip=?, ShipAddress=?, ShipCity=?, ShipState=?, ShipZip=?, Phone=?, Email=? WHERE CustomerID=?",
-              customer.getCustomerID(), customer.getCustomerFirstName(), customer.getCustomerLastName(),customer.getBillAddress(),customer.getBillCity(),customer.getBillState(),customer.getBillZip(),
-              customer.getShipAddress(),customer.getShipCity(),customer.getShipState(),customer.getShipZip(),customer.getPhone(),customer.getEmail());
+               customer.getCustomerFirstName(), customer.getCustomerLastName(),customer.getBillAddress(),customer.getBillCity(),customer.getBillState(),customer.getBillZip(),
+              customer.getShipAddress(),customer.getShipCity(),customer.getShipState(),customer.getShipZip(),customer.getPhone(),customer.getEmail(),customer.getCustomerID());
     }
 
 }
