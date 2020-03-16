@@ -247,6 +247,24 @@ Label QueryCustomerHistoryLabel1 = new Label("<p><font size=4 color=black>Please
 
 private TextField customerHistory = new TextField("Customer ID");
 private Button generateCustomerHistory = new Button("Generate Report", e -> generateCustomerHistory());
+
+
+//###########################Customer History SQL QUERIES###################################################
+
+ 
+private QueryIncomingOrders queryIncomingOrders;
+@Autowired
+private QueryIncomingOrdersService queryIncomingOrderService;
+
+
+private   Binder<QueryIncomingOrders> queryIncomingOrdersBinder = new Binder<>(QueryIncomingOrders.class);
+private Grid<QueryIncomingOrders> queryIncomingOrdersGrid = new Grid(QueryIncomingOrders.class);
+
+Label IncomingOrdersLabel = new Label("<p><font size=7 color=navy>Check for incoming orders.</font></p>",ContentMode.HTML);
+Label IncomingOrdersLabel1 = new Label("<p><font size=4 color=black>Please enter a valid store ID.</font></p>",ContentMode.HTML);
+
+private TextField incomingOrdersField = new TextField("Store ID");
+private Button IncomingOrdersButton = new Button("Generate Report", e -> generateIncomingOrders());
     //#############################INIT####################################################################
 
     protected void init(  VaadinRequest request) {
@@ -330,25 +348,28 @@ private Button generateCustomerHistory = new Button("Generate Report", e -> gene
 
       queryEmployeeSalesReportGrid.setColumns("employeeNo","noOfSales");
 
-      //###############QuerySalesReport Grid Creation#############################################
+      //###############QueryCheckInventory Grid Creation#############################################
 
      queryCheckInventoryGrid.setColumns("storeNo","productName","description","stock");
  
-      //###############QuerySalesReport Grid Creation#############################################
+      //###############QueryCustomerHistory Grid Creation#############################################
 
       queryCustomerHistoryGrid.setColumns("customerFname", "customerLname","customerTransactionID","customerPname","customerPrice");
  
+    //###############Query Incoming Orders Grid Creation#############################################
+
+     queryIncomingOrdersGrid.setColumns("incomingName", "incomingOrderDate", "incomingShipDate","incomingQuantity"); 
 
      //#########################LAYOUT CREATION##############################################
     categoryGrid.setWidth("1000px"); employeeGrid.setWidth("1000px"); orderGrid.setWidth("1000px"); productGrid.setWidth("1000px");
     productOrderedGrid.setWidth("1000px"); productCategoriesGrid.setWidth("1000px"); customerGrid.setWidth("1000px");
    productSoldGrid.setWidth("1000px"); querySalesReportGrid.setWidth("1000px"); queryCheckInventoryGrid.setWidth("1000px");
-   queryEmployeeSalesReportGrid.setWidth("1000px"); queryCustomerHistoryGrid.setWidth("1000px");
+   queryEmployeeSalesReportGrid.setWidth("1000px"); queryCustomerHistoryGrid.setWidth("1000px"); queryIncomingOrdersGrid.setWidth("1000px");
 
       VerticalLayout layout = new VerticalLayout(Title,QueriesLabel,salesReport, salesReport1,saleReportStoreID,generateReport,
     querySalesReportGrid,EmployeeSalesReport,queryEmployeeSalesReportGrid,checkInventoryLabel,checkInventoryLabel1,inventoryReportID,
     generateInventoryReport,queryCheckInventoryGrid,queryCustomerHistoryLabel,QueryCustomerHistoryLabel1,customerHistory,generateCustomerHistory,
-    queryCustomerHistoryGrid,
+    queryCustomerHistoryGrid,IncomingOrdersLabel,IncomingOrdersLabel1,incomingOrdersField,IncomingOrdersButton,queryIncomingOrdersGrid,
     dbTableLabel,CategoryLabel, categoryGrid, categoryName, subCategoryName, save,insert,CustomerLabel,customerGrid,
     customerID,customerFirstName,customerLastName,billAddress,billCity,billState,billZip,shipAddress,shipCity,shipState,
     shipZip,phone,email,saveCustomerButton,employeeLabel,employeeGrid,employeeID,employeeFirstName,employeeLastName,employeeSalary,
@@ -751,7 +772,17 @@ private void updateGridCustomerHistory(String customerID1) {
    }
 
 
+   //########################Customer History FUNCTIONS########################################################
+private void updateGridIncomingOrders(String incomingStoreID) {
+    List<QueryIncomingOrders> incomings = queryIncomingOrderService.findAll(incomingStoreID);
+    queryIncomingOrdersGrid.setItems(incomings);
 
+   }
+
+   private void generateIncomingOrders(){
+     String incomingStoreID = incomingOrdersField.getValue();
+       updateGridIncomingOrders(incomingStoreID);
+   }
 
 
 
