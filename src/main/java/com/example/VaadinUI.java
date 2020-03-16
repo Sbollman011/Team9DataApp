@@ -180,7 +180,7 @@ Label dbTableLabel = new Label("<b><font size=18 color=dodgerblue>Database Table
      private TextField productSoldID = new TextField("Product Sold ID");
      private TextField productSoldTransactionID = new TextField("Product Sold Transaction ID");
      private TextField productSoldQuantity = new TextField("Product Sold Quantity");
-     private Button saveProductSold = new Button("Save Changes"/*, e -> saveProductCategories()*/);
+     private Button saveProductSold = new Button("Save Changes", e -> saveProductSold());
          //private Button insert = new Button("Insert Category", e -> insertCategory());
    
 
@@ -592,6 +592,9 @@ private void saveOrder() {
   }
 
   private void saveProductOrdered() {
+      product_ordered.setPoOrderedID(poOrderedID.getValue());
+      product_ordered.setproductOrderedProductID(productOrderedProductID.getValue());
+      product_ordered.setproductOrderedQuantity(productOrderedQuantity.getValue());
       productOrderedService.update(product_ordered);
       updateGridProductOrdered();
   }
@@ -630,6 +633,9 @@ private void saveOrder() {
   }
 
   private void saveProductCategories() {
+      productcategories.setProductCategoriesID(productCategoriesProductID.getValue());
+      productcategories.setProductCategoriesName(productCategoriesName.getValue());
+      productcategories.setproductCategoriesSubName(productCategoriesSubName.getValue());
       productcategoriesService.update(productcategories);
       updateGridProductCategories();
   }
@@ -665,7 +671,10 @@ private void saveOrder() {
   }
 
   private void saveProductSold() {
-      productSoldService.update(productSold);
+    productSold.setSoldProductID(productSoldID.getValue());
+    productSold.setSoldQuantity(productSoldQuantity.getValue());
+    productSold.setSoldTransactionID(productSoldTransactionID.getValue());
+    productSoldService.update(productSold);
       updateGridProductSold();
   }
 

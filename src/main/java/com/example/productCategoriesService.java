@@ -20,8 +20,9 @@ public class productCategoriesService {
     }
 
     public void update(productCategories productcategories) {
-        jdbcTemplate.update("UPDATE Product_Categories SET ProductID, CategoryName, SubCategoryName WHERE ProductID=?",
-                productcategories.getProductCategoriesID(), productcategories.getProductCategoriesName(), productcategories.getProductCategoriesSubName());
+        jdbcTemplate.update("UPDATE Product_Categories SET  CategoryName=?, SubCategoryName=? WHERE ProductID=?",
+                productcategories.getProductCategoriesName(), productcategories.getProductCategoriesSubName(),
+                productcategories.getProductCategoriesID());
     }
 
     /*public List<Category> insert(){

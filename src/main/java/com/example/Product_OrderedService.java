@@ -20,8 +20,8 @@ public class Product_OrderedService {
     }
 
     public void update(Product_Ordered product_ordered) {
-        jdbcTemplate.update("UPDATE Product_Ordered SET PO_OrderID, PO_ProductID,Quantity WHERE PO_OrderID=?",
-                product_ordered.getPoOrderedID(),product_ordered.getproductOrderedProductID(), product_ordered.getproductOrderedQuantity());
+        jdbcTemplate.update("UPDATE Product_Ordered SET PO_OrderID =?, PO_ProductID=?,Quantity=? WHERE PO_OrderID=?",
+        product_ordered.getPoOrderedID(),product_ordered.getproductOrderedProductID(), product_ordered.getproductOrderedQuantity(),product_ordered.getPoOrderedID());
     }
 
     /*public List<Category> insert(){
