@@ -416,6 +416,7 @@ private Button IncomingOrdersButton = new Button("Generate Report", e -> generat
         categoryName.setVisible(visible);
         subCategoryName.setVisible(visible);
         save.setVisible(visible);
+        insert.setVisible(visible);
     }
 
     private void saveCategory() {
