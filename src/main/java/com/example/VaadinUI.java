@@ -602,7 +602,7 @@ private void saveOrder() {
       productName.setVisible(visible);
       productDescription.setVisible(visible);
       productPrice.setVisible(visible);
-      save.setVisible(visible);
+      saveProduct.setVisible(visible);
   }
 
   private void saveProduct() {
