@@ -24,7 +24,7 @@ public class ProductService {
     }
 
     public void update(Product product) {
-        jdbcTemplate.update("UPDATE Product SET  Name=?, Description=?, Price=?, WHERE ProductID=?" ,
+        jdbcTemplate.update("UPDATE Product SET  Name=?, Description=?, Price=? WHERE ProductID=?" ,
                product.getProductName(), product.getProductDescription(),product.getProductPrice(),product.getProductID());
 
     }   

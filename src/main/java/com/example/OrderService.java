@@ -23,10 +23,9 @@ public class OrderService {
                 rs.getString("OrderStoreID")));
     }
 
-    public void update(Order order) {
-        jdbcTemplate.update("UPDATE Order SET OrderDate=?, ShipDate=?, Total=?, OrderVendorID=?, OrderStoreID=? WHERE OrderID =?",
-             order.getOrderDate(), order.getOrderShipDate(),order.getOrderTotal(),order.getOrderVendorID(),
-              order.getOrderStoreID(), order.getOrderID());
+    public void update(String oID,String oDate,String oShipDate,String oTotal,String oVendorID,String oStoreID) {
+        jdbcTemplate.update("UPDATE Order SET OrderDate='"+oDate+"', ShipDate='"+oShipDate+"', Total='"+oTotal+"', OrderVendorID='"+
+        oVendorID+"', OrderStoreID='"+oStoreID+"' WHERE OrderID ='"+oID+"'");
     }
 
 }

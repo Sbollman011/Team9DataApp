@@ -514,13 +514,13 @@ private void setFormVisibleOrder(  boolean visible) {
 }
 
 private void saveOrder() {
-    order.setOrderID(orderID.getValue());
-    order.setOrderDate(orderDate.getValue());
-    order.setOrderShipDate(orderShipDate.getValue());
-    order.setOrderTotal(orderTotal.getValue());
-    order.setOrderVendorID(orderVendorID.getValue());
-    order.setOrderStoreID(orderStoreID.getValue());
-    orderService.update(order);
+    String oID = orderID.getValue();
+    String oDate =(orderDate.getValue());
+    String oShipDate = (orderShipDate.getValue());
+    String oTotal = (orderTotal.getValue());
+    String oVendorID =(orderVendorID.getValue());
+    String oStoreID = (orderStoreID.getValue());
+    orderService.update(oID,oDate,oShipDate,oTotal,oVendorID,oStoreID);
     updateGridOrder();
 }
    //########################PRODUCT FUNCTION########################################################
