@@ -416,6 +416,19 @@ private Button generateInventoryReport = new Button("Generate Report", e -> gene
     }
     
     private void saveCustomer() {
+        customer.setCustomerID(customerID.getValue());
+        customer.setCustomerFirstName(customerFirstName.getValue());
+        customer.setCustomerLastName(customerLastName.getValue());
+        customer.setBillAddress(billAddress.getValue());
+        customer.setBillCity(billCity.getValue());
+        customer.setBillState(billState.getValue());
+        customer.setBillZip(billZip.getValue());
+        customer.setShipAddress(shipAddress.getValue());
+        customer.setShipCity(shipCity.getValue());
+        customer.setShipState(shipState.getValue());
+        customer.setShipZip(shipZip.getValue());
+        customer.setPhone(phone.getValue());
+        customer.setEmail(email.getValue());
         customerService.update(customer);
         updateGridCustomer();
     }
@@ -454,6 +467,20 @@ private void setFormVisibleEmployee(  boolean visible) {
 }
 
 private void saveEmployee() {
+    /*customer.setCustomerID(customerID.getValue());
+        customer.setCustomerFirstName(customerFirstName.getValue());
+        customer.setCustomerLastName(customerLastName.getValue());
+        customer.setBillAddress(billAddress.getValue());
+        customer.setBillCity(billCity.getValue());
+        customer.setBillState(billState.getValue());
+        customer.setBillZip(billZip.getValue());
+        customer.setShipAddress(shipAddress.getValue());
+        customer.setShipCity(shipCity.getValue());
+        customer.setShipState(shipState.getValue());
+        customer.setShipZip(shipZip.getValue());
+        customer.setPhone(phone.getValue());
+        customer.setEmail(email.getValue());
+        customerService.update(customer);*/
     employeeService.update(employee);
     updateGridEmployee();
 }
