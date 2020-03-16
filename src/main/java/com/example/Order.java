@@ -35,10 +35,12 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public String getOrderShipDate() {
+    public void setOrderShipDate(String orderShipDate) {
+        this.orderShipDate = orderShipDate;
+    }
+    public String getOrderShipDate(){
         return orderShipDate;
     }
-
 
     public String getOrderTotal() {
         return orderTotal;

@@ -80,6 +80,7 @@ Label dbTableLabel = new Label("<b><font size=18 color=dodgerblue>Database Table
    private   TextField employeeID = new TextField("Employee ID");
    private   TextField employeeFirstName  = new TextField("First Name");
    private   TextField employeeLastName = new TextField("Last Name");
+   private   TextField employeeSalary = new TextField("Salary");
    private   TextField employeeStreetAddress = new TextField("Street Address");
    private   TextField employeeCity = new TextField("City");
    private   TextField employeeState = new TextField("State");
@@ -256,7 +257,7 @@ private Button generateInventoryReport = new Button("Generate Report", e -> gene
 
     //########### Employee GRID CREATION ###############################################//#endregion
     updateGridEmployee();
-    employeeGrid.setColumns("employeeID","employeeFirstName","employeeLastName","employeeStreetAddress"
+    employeeGrid.setColumns("employeeID","employeeFirstName","employeeLastName","salary","employeeStreetAddress"
     ,"employeeCity", "employeeState","employeeZip","employeeStoreID");
 
     employeeGrid.addSelectionListener(e -> updateFormEmployee());
@@ -328,7 +329,7 @@ private Button generateInventoryReport = new Button("Generate Report", e -> gene
     generateInventoryReport,queryCheckInventoryGrid,
     dbTableLabel,CategoryLabel, categoryGrid, categoryName, subCategoryName, save,insert,CustomerLabel,customerGrid,
     customerID,customerFirstName,customerLastName,billAddress,billCity,billState,billZip,shipAddress,shipCity,shipState,
-    shipZip,phone,email,saveCustomerButton,employeeLabel,employeeGrid,employeeID,employeeFirstName,employeeLastName,
+    shipZip,phone,email,saveCustomerButton,employeeLabel,employeeGrid,employeeID,employeeFirstName,employeeLastName,employeeSalary,
     employeeStreetAddress, employeeCity, employeeState, employeeZip, employeeStoreID,saveEmployeeButton,orderLabel, orderGrid,orderID,orderDate,orderShipDate,
     orderTotal,orderVendorID,orderStoreID,saveOrderButton,productLabel, productGrid,productID,productName,productDescription,productPrice,saveProduct, 
     productOrderedLabel, productOrderedGrid,poOrderedID, productOrderedProductID, productOrderedQuantity,saveProductOrdered,productCategoriesLabel,
@@ -458,6 +459,7 @@ private void setFormVisibleEmployee(  boolean visible) {
     employeeID.setVisible(visible);
     employeeFirstName.setVisible(visible);
     employeeLastName.setVisible(visible);
+    employeeSalary.setVisible(visible);
     employeeStreetAddress.setVisible(visible);
     employeeCity.setVisible(visible);
     employeeState.setVisible(visible);
@@ -467,21 +469,16 @@ private void setFormVisibleEmployee(  boolean visible) {
 }
 
 private void saveEmployee() {
-    /*customer.setCustomerID(customerID.getValue());
-        customer.setCustomerFirstName(customerFirstName.getValue());
-        customer.setCustomerLastName(customerLastName.getValue());
-        customer.setBillAddress(billAddress.getValue());
-        customer.setBillCity(billCity.getValue());
-        customer.setBillState(billState.getValue());
-        customer.setBillZip(billZip.getValue());
-        customer.setShipAddress(shipAddress.getValue());
-        customer.setShipCity(shipCity.getValue());
-        customer.setShipState(shipState.getValue());
-        customer.setShipZip(shipZip.getValue());
-        customer.setPhone(phone.getValue());
-        customer.setEmail(email.getValue());
-        customerService.update(customer);*/
-    employeeService.update(employee);
+    String eID = employeeID.getValue();
+    String eFname =employeeFirstName.getValue();
+    String eLname = employeeLastName.getValue();
+    String eSalary =employeeSalary.getValue();
+    String eAddress = shipAddress.getValue();
+    String eCity = shipCity.getValue();
+    String eState = shipState.getValue();
+    String eZip = shipZip.getValue();
+    String eStoreID = employeeStoreID.getValue();
+    employeeService.update( eFname,  eLname,  eSalary,  eAddress,  eCity,  eState,  eZip,  eStoreID,  eID);
     updateGridEmployee();
 }
     
@@ -509,6 +506,7 @@ private void setFormVisibleOrder(  boolean visible) {
     orderID.setVisible(visible);
     orderDate.setVisible(visible);
     orderShipDate.setVisible(visible);
+    orderShipDate.setVisible(visible);
     orderTotal.setVisible(visible);
     orderVendorID.setVisible(visible);
     orderStoreID.setVisible(visible);
@@ -516,6 +514,12 @@ private void setFormVisibleOrder(  boolean visible) {
 }
 
 private void saveOrder() {
+    order.setOrderID(orderID.getValue());
+    order.setOrderDate(orderDate.getValue());
+    order.setOrderShipDate(orderShipDate.getValue());
+    order.setOrderTotal(orderTotal.getValue());
+    order.setOrderVendorID(orderVendorID.getValue());
+    order.setOrderStoreID(orderStoreID.getValue());
     orderService.update(order);
     updateGridOrder();
 }
@@ -547,6 +551,10 @@ private void saveOrder() {
   }
 
   private void saveProduct() {
+      product.setProductID(productID.getValue());
+      product.setProductName(productName.getValue());
+      product.setProductDescription(productDescription.getValue());
+      product.setProductPrice(productPrice.getValue());
       productService.update(product);
       updateGridProduct();
   }

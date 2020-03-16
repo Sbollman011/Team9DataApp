@@ -19,14 +19,15 @@ public class EmployeeService {
 
     public List<Employee> findAll() {
         return jdbcTemplate.query("SELECT * FROM employee",
-                (rs, rowNum) -> new Employee(rs.getString("EmployeeID"), rs.getString("FirstName"), rs.getString("LastName"),rs.getLong("Salary"),
+                (rs, rowNum) -> new Employee(rs.getString("EmployeeID"), rs.getString("FirstName"), rs.getString("LastName"),rs.getString("Salary"),
                 rs.getString("StreetAddress"),rs.getString("City"),rs.getString("State"),rs.getString("Zip"),rs.getString("EmployeeStoreID")));
     }
 
-    public void update(Employee employee) {
-        jdbcTemplate.update("UPDATE Employee SET FirstName=?, LastName=?, Salary=?, StreetAddress=?, City=?, State=?, Zip=?, EmployeeStoreID=?, WHERE EmployeeID=?",
-              employee.getEmployeeID(), employee.getEmployeeFirstName(), employee.getEmployeeLastName(),employee.getEmployeeStreetAddress(),employee.getEmployeeCity(),
-              employee.getEmployeeState(),employee.getEmployeeZip(),employee.getEmployeeStoreID());
+    public void update(String eFname, String eLname, String eSalary, String eAddress, String eCity, String eState, String eZip, String eStoreID, String eID) {
+        jdbcTemplate.update("UPDATE Employee SET FirstName='"+eFname+"', LastName='"+eLname+
+        "', Salary='"+eSalary+"', StreetAddress='"+eAddress+"', City='"+eCity+"', State='"+eState+"', Zip='"+eZip+
+        "', EmployeeStoreID='"+eStoreID+"' WHERE EmployeeID='"+eZip+"'");
+    
     }
 
 }

@@ -2,12 +2,12 @@ package com.example;
 
 public class Employee {
 
-    double salary;
-    String employeeID,employeeFirstName, employeeLastName, employeeStreetAddress, employeeCity, 
+ 
+    String employeeID,employeeFirstName, employeeLastName, salary, employeeStreetAddress, employeeCity, 
     employeeState,employeeZip, employeeStoreID;
 
-    public Employee(String employeeID, String employeeFirstName, String employeeLastName,
-        double salary, String employeeStreetAddress, String employeeCity, String employeeState, 
+    public Employee(String employeeID, String employeeFirstName, String employeeLastName,String salary
+        , String employeeStreetAddress, String employeeCity, String employeeState, 
         String employeeZip, String employeeStoreID) {
 
         this.employeeID= employeeID;
@@ -46,11 +46,11 @@ public class Employee {
         this.employeeLastName = employeeLastName;
     }
 
-    public double getSalary() {
+    public String getSalary() {
         return salary;
     }
 
-    public void setSalary(double salary) {
+    public void setSalary(String salary) {
         this.salary = salary;
     }
 
@@ -90,7 +90,7 @@ public class Employee {
         return employeeStoreID;
     }
 
-    public void getEmployeeStoreID(String employeeStoreID){
+    public void setEmployeeStoreID(String employeeStoreID){
         this.employeeStoreID = employeeStoreID;
     }
 
