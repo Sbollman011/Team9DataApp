@@ -230,6 +230,23 @@ Label checkInventoryLabel1 = new Label("<p><font size=4 color=black>Please enter
 
 private TextField inventoryReportID = new TextField("Store ID");
 private Button generateInventoryReport = new Button("Generate Report", e -> generateInventoryReport());
+
+//###########################Customer History SQL QUERIES###################################################
+
+ 
+private QueryCustomerHistory queryCustomerHistory;
+@Autowired
+private QueryCustomerHistoryService queryCustomerHistoryService;
+
+
+private   Binder<QueryCustomerHistory> queryCustomerHistoryBinder = new Binder<>(QueryCustomerHistory.class);
+private Grid<QueryCustomerHistory> queryCustomerHistoryGrid = new Grid(QueryCustomerHistory.class);
+
+Label queryCustomerHistoryLabel = new Label("<p><font size=7 color=navy>Check the order history of a customer.</font></p>",ContentMode.HTML);
+Label QueryCustomerHistoryLabel1 = new Label("<p><font size=4 color=black>Please enter a valid customer ID.</font></p>",ContentMode.HTML);
+
+private TextField customerHistory = new TextField("Customer ID");
+private Button generateCustomerHistory = new Button("Generate Report", e -> generateCustomerHistory());
     //#############################INIT####################################################################
 
     protected void init(  VaadinRequest request) {
@@ -317,16 +334,21 @@ private Button generateInventoryReport = new Button("Generate Report", e -> gene
 
      queryCheckInventoryGrid.setColumns("storeNo","productName","description","stock");
  
+      //###############QuerySalesReport Grid Creation#############################################
+
+      queryCustomerHistoryGrid.setColumns("customerFname", "customerLname","customerTransactionID","customerPname","customerPrice");
+ 
 
      //#########################LAYOUT CREATION##############################################
     categoryGrid.setWidth("1000px"); employeeGrid.setWidth("1000px"); orderGrid.setWidth("1000px"); productGrid.setWidth("1000px");
     productOrderedGrid.setWidth("1000px"); productCategoriesGrid.setWidth("1000px"); customerGrid.setWidth("1000px");
    productSoldGrid.setWidth("1000px"); querySalesReportGrid.setWidth("1000px"); queryCheckInventoryGrid.setWidth("1000px");
-   queryEmployeeSalesReportGrid.setWidth("1000px");
+   queryEmployeeSalesReportGrid.setWidth("1000px"); queryCustomerHistoryGrid.setWidth("1000px");
 
       VerticalLayout layout = new VerticalLayout(Title,QueriesLabel,salesReport, salesReport1,saleReportStoreID,generateReport,
     querySalesReportGrid,EmployeeSalesReport,queryEmployeeSalesReportGrid,checkInventoryLabel,checkInventoryLabel1,inventoryReportID,
-    generateInventoryReport,queryCheckInventoryGrid,
+    generateInventoryReport,queryCheckInventoryGrid,queryCustomerHistoryLabel,QueryCustomerHistoryLabel1,customerHistory,generateCustomerHistory,
+    queryCustomerHistoryGrid,
     dbTableLabel,CategoryLabel, categoryGrid, categoryName, subCategoryName, save,insert,CustomerLabel,customerGrid,
     customerID,customerFirstName,customerLastName,billAddress,billCity,billState,billZip,shipAddress,shipCity,shipState,
     shipZip,phone,email,saveCustomerButton,employeeLabel,employeeGrid,employeeID,employeeFirstName,employeeLastName,employeeSalary,
@@ -688,7 +710,7 @@ private void saveOrder() {
    private void updateGridSalesReport(String store) {
     List<QuerySalesReport> salesReport = querySalesReportService.findAll(store);
     querySalesReportGrid.setItems(salesReport);
-    setFormVisibleProductSold(false);
+
    }
 
    private void generateSalesReport(){
@@ -701,14 +723,14 @@ private void saveOrder() {
  private void updateGridEmployeeSalesReport() {
     List<QueryEmployeeSalesReport> employeeSalesReport = queryEmployeeSalesReportService.findAll();
     queryEmployeeSalesReportGrid.setItems(employeeSalesReport);
-    setFormVisibleProductSold(false);
+    
    }
 
    //########################Check Inventory FUNCTIONS########################################################
    private void updateGridCheckInventory(String store) {
     List<QueryCheckInventory> checkInventory = queryCheckInventoryService.findAll(store);
     queryCheckInventoryGrid.setItems(checkInventory);
-    setFormVisibleProductSold(false);
+    
    }
 
    private void generateInventoryReport(){
@@ -716,7 +738,17 @@ private void saveOrder() {
        updateGridCheckInventory(store);
    }
 
+//########################Customer History FUNCTIONS########################################################
+private void updateGridCustomerHistory(String customerID1) {
+    List<QueryCustomerHistory> customerhistorys = queryCustomerHistoryService.findAll(customerID1);
+    queryCustomerHistoryGrid.setItems(customerhistorys);
 
+   }
+
+   private void generateCustomerHistory(){
+     String customerID1 = customerHistory.getValue();
+       updateGridCustomerHistory(customerID1);
+   }
 
 
 
