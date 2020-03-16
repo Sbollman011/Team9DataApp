@@ -565,6 +565,8 @@ private void setFormVisibleOrder(  boolean visible) {
     orderTotal.setVisible(visible);
     orderVendorID.setVisible(visible);
     orderStoreID.setVisible(visible);
+    saveOrderButton.setVisible(visible);
+    
     
 }
 
