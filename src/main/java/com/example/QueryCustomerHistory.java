@@ -5,14 +5,14 @@ package com.example;
 public class QueryCustomerHistory {
 
     //getters and setters for the query to generate a sales report for a specific store
-    String customerFname, customerLname,customerTransactionID,customerPname,customerPrice;
+    String customerFname, customerLname,customerTransactionID,customerPname,itemPrice;
 
-    public QueryCustomerHistory(String customerFname, String customerLname, String customerTransactionID, String customerPname,String customerPrice) {
+    public QueryCustomerHistory(String customerFname, String customerLname, String customerTransactionID, String customerPname,String itemPrice) {
         this.customerFname= customerFname;
         this.customerLname = customerLname;
         this.customerTransactionID = customerTransactionID;
         this.customerPname = customerPname;
-        this.customerPrice = customerPrice;
+        this.itemPrice = itemPrice;
         
     }
 
@@ -48,12 +48,12 @@ public class QueryCustomerHistory {
         this.customerPname = customerPname;
     }
 
-    public String getCustomerPrice() {
-        return customerPrice;
+    public String getItemPrice() {
+        return itemPrice;
     }
 
-    public void setCustomerPrice(String customerPrice) {
-        this.customerPrice = customerPrice;
+    public void setCustomerPrice(String itemPrice) {
+        this.itemPrice = itemPrice;
     }
 }
    

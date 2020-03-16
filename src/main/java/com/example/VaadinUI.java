@@ -360,7 +360,7 @@ private Button IncomingOrdersButton = new Button("Generate Report", e -> generat
  
       //###############QueryCustomerHistory Grid Creation#############################################
 
-      queryCustomerHistoryGrid.setColumns("customerFname", "customerLname","customerTransactionID","customerPname","customerPrice");
+      queryCustomerHistoryGrid.setColumns("customerFname", "customerLname","customerTransactionID","customerPname","itemPrice");
  
     //###############Query Incoming Orders Grid Creation#############################################
 
