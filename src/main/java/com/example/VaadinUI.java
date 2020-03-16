@@ -182,7 +182,13 @@ Label dbTableLabel = new Label("<b><font size=18 color=dodgerblue>Database Table
      private TextField productSoldQuantity = new TextField("Product Sold Quantity");
      private Button saveProductSold = new Button("Save Changes", e -> saveProductSold());
          //private Button insert = new Button("Insert Category", e -> insertCategory());
-   
+
+   //###########################STORE    ###################################################
+    private Store sold;
+    @Autowired
+    private StoreService storeService;
+    Label storeLabel = new Label("<b><font size=10 color=black>Store</font></b>",ContentMode.HTML);
+    private Grid<Store> storeGrid = new Grid(Store.class);
 
   //###########################Pull Store Sales Report SQL QUERIES###################################################
 
@@ -195,7 +201,7 @@ Label dbTableLabel = new Label("<b><font size=18 color=dodgerblue>Database Table
   private   Binder<QuerySalesReport> querySalesReportBinder = new Binder<>(QuerySalesReport.class);
   private Grid<QuerySalesReport> querySalesReportGrid = new Grid(QuerySalesReport.class);
 
-  Label salesReport = new Label("<p><font size=7 color=navy>Pull a Stores Sales report for a given store.</font></p>",ContentMode.HTML);
+  Label salesReport = new Label("<p><font size=7 color=navy>Pull a store's sales report for a given store.</font></p>",ContentMode.HTML);
   Label salesReport1 = new Label("<p><font size=4 color=black>Please enter your valid store ID to generate your transactions.</font></p>",ContentMode.HTML);
 
   private TextField saleReportStoreID = new TextField("Store ID");
@@ -360,11 +366,16 @@ private Button IncomingOrdersButton = new Button("Generate Report", e -> generat
 
      queryIncomingOrdersGrid.setColumns("incomingName", "incomingOrderDate", "incomingShipDate","incomingQuantity"); 
 
+     //#########################Store##############################################
+    updateGridStore();
+    //storeGrid.setColumns("storeStoreID","storeStreetAdd", "storeCity", "storeState","storeZIP");
+     
      //#########################LAYOUT CREATION##############################################
     categoryGrid.setWidth("1000px"); employeeGrid.setWidth("1000px"); orderGrid.setWidth("1000px"); productGrid.setWidth("1000px");
     productOrderedGrid.setWidth("1000px"); productCategoriesGrid.setWidth("1000px"); customerGrid.setWidth("1000px");
    productSoldGrid.setWidth("1000px"); querySalesReportGrid.setWidth("1000px"); queryCheckInventoryGrid.setWidth("1000px");
    queryEmployeeSalesReportGrid.setWidth("1000px"); queryCustomerHistoryGrid.setWidth("1000px"); queryIncomingOrdersGrid.setWidth("1000px");
+   storeGrid.setWidth("1000px");
 
       VerticalLayout layout = new VerticalLayout(Title,QueriesLabel,salesReport, salesReport1,saleReportStoreID,generateReport,
     querySalesReportGrid,EmployeeSalesReport,queryEmployeeSalesReportGrid,checkInventoryLabel,checkInventoryLabel1,inventoryReportID,
@@ -377,7 +388,7 @@ private Button IncomingOrdersButton = new Button("Generate Report", e -> generat
     orderTotal,orderVendorID,orderStoreID,saveOrderButton,productLabel, productGrid,productID,productName,productDescription,productPrice,saveProduct, 
     productOrderedLabel, productOrderedGrid,poOrderedID, productOrderedProductID, productOrderedQuantity,saveProductOrdered,productCategoriesLabel,
     productCategoriesGrid,productCategoriesProductID, productCategoriesName,productCategoriesSubName,saveProductCategories,productSoldLabel,
-     productSoldGrid,productSoldTransactionID,productSoldID,productSoldQuantity,saveProductSold);
+     productSoldGrid,productSoldTransactionID,productSoldID,productSoldQuantity,saveProductSold,storeLabel,storeGrid);
     setContent(layout);
     
     }
@@ -653,7 +664,7 @@ private void saveOrder() {
    private void updateGridProductCategories() {
       List<productCategories> ProductCategories = productcategoriesService.findAll();
       productCategoriesGrid.setItems(ProductCategories);
-      setFormVisibleProductOrdered(false);
+      setFormVisibleProductCategories(false);
   }
 
 
@@ -671,7 +682,6 @@ private void saveOrder() {
       productCategoriesProductID.setVisible(visible);
       productCategoriesName.setVisible(visible);
       productCategoriesSubName.setVisible(visible);
-
       saveProductCategories.setVisible(visible);
   }
 
@@ -705,11 +715,14 @@ private void saveOrder() {
       } else {
           productSold = productSoldGrid.asSingleSelect().getValue();
           productSoldBinder.setBean(productSold);
-          setFormVisibleProductOrdered(true);
+          setFormVisibleProductSold(true);
       }
   }
 
   private void setFormVisibleProductSold(  boolean visible) {
+    productSoldID.setVisible(visible);
+    productSoldQuantity.setVisible(visible);
+    productSoldTransactionID.setVisible(visible);
 
   }
 
@@ -784,7 +797,11 @@ private void updateGridIncomingOrders(String incomingStoreID) {
        updateGridIncomingOrders(incomingStoreID);
    }
 
-
+//########################STORE FUNCTIONS############################################################
+private void updateGridStore() {
+    List<Store> stores = storeService.findAll();
+    storeGrid.setItems(stores);
+}
 
 
 }
