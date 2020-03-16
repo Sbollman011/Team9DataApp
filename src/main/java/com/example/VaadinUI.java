@@ -724,6 +724,7 @@ private void saveOrder() {
     productSoldID.setVisible(visible);
     productSoldQuantity.setVisible(visible);
     productSoldTransactionID.setVisible(visible);
+    saveProductSold.setVisible(visible);
 
   }
 
